@@ -3,26 +3,427 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baker Bridge Rescue</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #fafafa;
-      color: #222;
-    }
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 500;
-      text-align: center;
-    }
-  </style>
+  <title>Baker Bridge Rescue | Advocacy and Sanctuary in East Tennessee</title>
+  <meta name="description" content="Thirty years of second chances. Baker Bridge Rescue has rehomed more than 1,600 dogs and now works in advocacy, education, and lifelong sanctuary care in Cleveland, Tennessee." />
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23B05F3C"><ellipse cx="12" cy="16.2" rx="4.4" ry="3.9"/><ellipse cx="4.9" cy="10.6" rx="1.9" ry="2.5" transform="rotate(-22 4.9 10.6)"/><ellipse cx="9.3" cy="6.9" rx="2" ry="2.7" transform="rotate(-8 9.3 6.9)"/><ellipse cx="14.7" cy="6.9" rx="2" ry="2.7" transform="rotate(8 14.7 6.9)"/><ellipse cx="19.1" cy="10.6" rx="1.9" ry="2.5" transform="rotate(22 19.1 10.6)"/></svg>' />
+  <meta property="og:title" content="Baker Bridge Rescue" />
+  <meta property="og:description" content="Thirty years of second chances. Now an advocacy and sanctuary organization in East Tennessee." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
-  <h1>Baker Bridge Rescue &mdash; Coming Soon</h1>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header on-hero">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        Baker Bridge Rescue
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="shop.html">Store</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn-terracotta btn-sm nav-donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EB9VP54KJB4Y6" target="_blank" rel="noopener">Donate</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <!-- TODO(Max): drop John's real footage in as assets/hero.mp4. The Pexels clip below is a temporary placeholder. -->
+      <video autoplay muted loop playsinline poster="assets/hero-poster.jpg" aria-hidden="true">
+        <source src="assets/hero.mp4" type="video/mp4" />
+        <source src="https://videos.pexels.com/video-files/9898282/9898282-uhd_2560_1440_24fps.mp4" type="video/mp4" />
+      </video>
+      <div class="wrap">
+        <div class="hero-inner hero-stagger">
+          <span class="eyebrow">
+            Cleveland, Tennessee · Since 1996
+          </span>
+          <h1>Thirty years of second chances.</h1>
+          <p class="lede">Baker Bridge Rescue has rehomed more than 1,600 dogs. Today we carry that work forward as an advocacy and sanctuary organization. Shop the store, meet the residents, and join the mission.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-terracotta" href="shop.html">Shop the store</a>
+            <a class="btn btn-ghost" href="about.html">Read our story</a>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#store" aria-label="Scroll to the store">
+        Scroll
+        <svg class="cue-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- ============ BRIDGE DIVIDER (signature) ============ -->
+    <div class="bridge-divider" aria-hidden="true">
+      <svg viewBox="0 0 800 132" xmlns="http://www.w3.org/2000/svg">
+        <rect class="deck" x="0" y="98" width="800" height="5" rx="2.5" fill="currentColor" style="color: var(--line);" />
+        <g stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M300 98 V54 H500 V98" />
+          <path d="M286 57 L400 22 L514 57" />
+          <path d="M314 60 L382 94 M382 60 L314 94 M418 60 L486 94 M486 60 L418 94" />
+        </g>
+        <g transform="translate(0 49) scale(0.85)">
+          <g class="runner" fill="currentColor">
+            <ellipse cx="46" cy="30" rx="24" ry="10.5" />
+            <circle cx="72" cy="21" r="8.5" />
+            <path d="M76 12 l9 -7 -1 10 z" />
+            <path d="M80 24 l11 3 -10 5 z" />
+            <path d="M24 24 q-14 -10 -19 -3 q7 -1 12 7 z" />
+            <rect x="60" y="34" width="5.5" height="19" rx="2.7" transform="rotate(24 62 34)" />
+            <rect x="52" y="35" width="5.5" height="16" rx="2.7" transform="rotate(-16 54 35)" />
+            <rect x="26" y="33" width="5.5" height="19" rx="2.7" transform="rotate(-28 28 33)" />
+            <rect x="35" y="35" width="5.5" height="15" rx="2.7" transform="rotate(14 37 35)" />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- ============ FEATURED STORE ============ -->
+    <section id="store" class="section store-strip">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">
+            The Rescue Store
+          </span>
+          <h2>Wear the mission. Fund the mission.</h2>
+          <p class="lede">Every purchase supports the sanctuary residents and our advocacy work. Orders are printed and shipped by our print partner.</p>
+        </div>
+        <div id="featured-store"></div>
+        <p class="center mt-40"><a class="btn btn-primary" href="shop.html">Visit the full store</a></p>
+      </div>
+    </section>
+
+    <!-- ============ A NEW CHAPTER ============ -->
+    <section class="section">
+      <div class="wrap">
+        <div class="split">
+          <div class="reveal">
+            <span class="eyebrow">
+              A new chapter
+            </span>
+            <h2>The mission has changed. The heart has not.</h2>
+            <!-- TODO(John): this pivot statement is a draft. Edit freely. -->
+            <p>For thirty years we answered the calls no one else would. In 2024 we made the hardest decision of our lives and ended intake. We are not quitting rescue. We are crossing a bridge.</p>
+            <p>Baker Bridge Rescue now works in advocacy, education, and lifelong sanctuary care for the eleven dogs and cats who still call this place home. Every purchase and every gift goes to them, and to the animals we can still speak for.</p>
+            <p><strong>Betty and John Baker</strong><br /><span style="color: var(--brown-faint); font-size: 0.9rem;">Founders, Baker Bridge Rescue</span></p>
+            <div class="stats">
+              <div class="stat"><div class="num"><span data-count="30">0</span></div><div class="lbl">Years of rescue</div></div>
+              <div class="stat"><div class="num"><span data-count="1600" data-suffix="+">0</span></div><div class="lbl">Dogs rehomed</div></div>
+              <div class="stat"><div class="num"><span data-count="11">0</span></div><div class="lbl">Sanctuary residents</div></div>
+            </div>
+          </div>
+          <div class="photo-frame reveal reveal-d2">
+            <img src="assets/photos/john-betty.jpg" alt="Betty and John Baker with one of their senior rescue dogs" />
+            <span class="caption">Betty and John Baker</span>
+          </div>
+        </div>
+
+        <div class="grid grid-4 mt-40">
+          <div class="pillar reveal">
+            <h3>Advocacy</h3>
+            <p>Pushing for humane laws and responsible ownership, from city hall to Washington.</p>
+          </div>
+          <div class="pillar reveal reveal-d1">
+            <h3>Sanctuary</h3>
+            <p>Lifelong care for the eleven dogs and cats who remain in our keeping.</p>
+          </div>
+          <div class="pillar reveal reveal-d2">
+            <h3>Education</h3>
+            <p>Helping owners, adopters, and rescuers understand the rules that protect animals.</p>
+          </div>
+          <div class="pillar reveal reveal-d3">
+            <h3>Resource</h3>
+            <p>A trusted ally for shelters, rescuers, and families who need help finding help.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ DOC'S STORY ============ -->
+    <section class="section">
+      <div class="wrap">
+        <div class="split flip">
+          <div class="video-embed reveal">
+            <iframe src="https://www.youtube.com/embed/f0LQsP3w0jo" title="Doc's story" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="reveal reveal-d2">
+            <span class="eyebrow">
+              A success story
+            </span>
+            <h2>Doc lived the dream.</h2>
+            <p>Tyson, better known as Doc, came to us feral, terrified, and covered in mange. We nursed his body back to health. The fear took longer.</p>
+            <p>Then a patient young couple took him home and kept working. Watch him now. Off leash, confident, and free. This is why we did it for thirty years.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">
+            Testimonials
+          </span>
+          <h2>Top notch adopters.</h2>
+          <p class="lede">Real families. Real happy endings. Tap a card to watch their videos.</p>
+        </div>
+        <div class="testi-row">
+          <a class="testi-card" href="https://youtu.be/LFSnE74JW7o" target="_blank" rel="noopener">
+            <div class="testi-thumb">
+              <img src="https://img.youtube.com/vi/LFSnE74JW7o/hqdefault.jpg" alt="Bella's video" loading="lazy" />
+              <span class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+            </div>
+            <div class="testi-body">
+              <h3>Bella</h3>
+              <p>John spotted her hiding under a car in a dangerous neighborhood. Her family cannot imagine life without her.</p>
+              <span class="watch">Watch Bella's video</span>
+            </div>
+          </a>
+          <a class="testi-card" href="https://youtu.be/jcmB3L-pSvM" target="_blank" rel="noopener">
+            <div class="testi-thumb">
+              <img src="https://img.youtube.com/vi/jcmB3L-pSvM/hqdefault.jpg" alt="Coco's video" loading="lazy" />
+              <span class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+            </div>
+            <div class="testi-body">
+              <h3>Coco</h3>
+              <p>Loved so much his family got him a girlfriend. Now both dogs travel with them to New York, Boston, and Philly.</p>
+              <span class="watch">Watch Coco's video</span>
+            </div>
+          </a>
+          <a class="testi-card" href="https://youtu.be/RqqAJz7BEmw" target="_blank" rel="noopener">
+            <div class="testi-thumb">
+              <img src="https://img.youtube.com/vi/RqqAJz7BEmw/hqdefault.jpg" alt="Lulu Rose's video" loading="lazy" />
+              <span class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+            </div>
+            <div class="testi-body">
+              <h3>Lulu Rose</h3>
+              <p>Two little girls worked hard to earn the right to a puppy. Their video is their thank you for a job well done.</p>
+              <span class="watch">Watch Lulu Rose's video</span>
+            </div>
+          </a>
+          <a class="testi-card" href="https://youtu.be/4C56pzIRqYU" target="_blank" rel="noopener">
+            <div class="testi-thumb">
+              <img src="https://img.youtube.com/vi/4C56pzIRqYU/hqdefault.jpg" alt="Logan's video" loading="lazy" />
+              <span class="play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+            </div>
+            <div class="testi-body">
+              <h3>Logan</h3>
+              <p>A Great Pyrenees who struggled to trust people. His adopters restored his security and his happiness.</p>
+              <span class="watch">Watch Logan's video</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE EYES ============ -->
+    <section class="quote-band">
+      <div class="wrap reveal">
+        <span class="eyebrow">The Eyes</span>
+        <blockquote>&ldquo;Dogs are not our whole lives, but they make our lives whole.&rdquo;</blockquote>
+      </div>
+    </section>
+
+    <!-- ============ SUPPORT ============ -->
+    <section class="section" id="support">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">
+            We need
+          </span>
+          <h2>Support the mission.</h2>
+          <p class="lede">BBR runs on donations alone. No grants and no government funding. Just animal lovers like you. Here is where your gift goes.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="need-card reveal">
+            <div><h3>Fencing</h3><p>Safe play space and separation for the dogs who need their own room to roam.</p></div>
+          </div>
+          <div class="need-card reveal reveal-d1">
+            <div><h3>Kennels</h3><p>Day to day housing, bedding, food, and everything it takes to run the kennel.</p></div>
+          </div>
+          <div class="need-card reveal reveal-d2">
+            <div><h3>Vet care</h3><p>Spay and neuter, annual exams, vaccines, and emergency treatment when it counts.</p></div>
+          </div>
+          <div class="need-card reveal">
+            <div><h3>Medications</h3><p>Flea, tick, and heartworm prevention, plus supplements for the seniors.</p></div>
+          </div>
+          <div class="need-card reveal reveal-d1">
+            <div><h3>Building supplies</h3><p>Repairs and upgrades around the sanctuary, from dog houses to gates.</p></div>
+          </div>
+          <div class="need-card reveal reveal-d2">
+            <div><h3>Carry cart</h3><p>You never go empty handed to the kennels. Feed, straw, and supplies add up fast.</p></div>
+          </div>
+        </div>
+
+        <div class="wish-card reveal">
+          <div>
+            <h3>A wish list, from us and the pets.</h3>
+            <p>A small gift, even the price of a drive through meal, keeps the residents fed, warm, and healthy. If you have already given, thank you. Sharing our story with your animal loving friends helps just as much.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-light" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EB9VP54KJB4Y6" target="_blank" rel="noopener">Donate with PayPal</a>
+            <a class="btn btn-ghost" style="color: #fff; border-color: rgba(255,255,255,0.5);" href="https://www.paypal.me/bakerbridgerescue" target="_blank" rel="noopener">paypal.me/bakerbridgerescue</a>
+            <span class="fine">PayPal gifts can also be sent to bakerrescue@aol.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AFFILIATES ============ -->
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">
+            Affiliates
+          </span>
+          <h2>Shop and support.</h2>
+          <p class="lede">Full disclosure: these partners send us a small commission when you shop through our links. It is something you were going to buy anyway, and it costs you nothing extra.</p>
+        </div>
+        <a class="card affil-featured reveal" href="https://www.amazon.com/?tag=pets0cbae-20" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
+          <span class="mark">a</span>
+          <span>
+            <h3 style="margin-bottom: 4px;">Shop Amazon through our link</h3>
+            <span style="color: var(--brown-soft); font-size: 0.95rem;">Start any Amazon trip here and a small percentage of what you buy comes back to the rescue. Bookmark it and use it every time.</span>
+          </span>
+        </a>
+        <!-- TODO(Max/John): add real affiliate links below when the accounts are set up. -->
+        <div class="affil-chips reveal">
+          <span class="chip">Walmart <span class="soon">Coming soon</span></span>
+          <span class="chip">Target <span class="soon">Coming soon</span></span>
+          <span class="chip">Home Depot <span class="soon">Coming soon</span></span>
+          <span class="chip">Patreon <span class="soon">Coming soon</span></span>
+          <span class="chip">Buy Me a Coffee <span class="soon">Coming soon</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARTNERS ============ -->
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">
+            Thanks to
+          </span>
+          <h2>The partners who make it possible.</h2>
+        </div>
+        <div class="grid grid-2">
+          <div class="card partner-card reveal">
+            <h3>Dixie Day Spay</h3>
+            <div class="tag">Low cost spay and neuter · Cleveland, TN</div>
+            <p>A nonprofit clinic working to end the killing of healthy companion animals by making spay and neuter surgery affordable and accessible.</p>
+            <div class="meta">182 Airport Rd, Cleveland, TN 37312 · (423) 476-7122</div>
+            <a class="btn btn-ghost btn-sm" href="http://www.dixiedogsandcats.org/" target="_blank" rel="noopener">Visit Dixie Day Spay</a>
+          </div>
+          <div class="card partner-card reveal reveal-d1">
+            <h3>Rescue Riders LLC</h3>
+            <div class="tag">Licensed pet transport · Southeast TN</div>
+            <p>A USDA approved transport that carried our dogs to their new families across Maryland, Pennsylvania, New York, Connecticut, and New Hampshire.</p>
+            <div class="meta">rescue.riders.llc@gmail.com</div>
+            <a class="btn btn-ghost btn-sm" href="https://bookwhen.com/pooches" target="_blank" rel="noopener">Visit Rescue Riders</a>
+          </div>
+        </div>
+        <p class="reveal mt-24" style="color: var(--brown-soft);">Special thanks to Dr. Sanders and the team at Keith Street Animal Clinic for years of care, and to every adopter who opened their home.</p>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="section newsletter">
+      <div class="wrap">
+        <div class="split">
+          <div class="reveal">
+            <span class="eyebrow">
+              See the eyes of hope
+            </span>
+            <h2>Join the quarterly newsletter.</h2>
+            <p class="lede">Sanctuary updates, advocacy wins, and the occasional very good dog photo. Four emails a year. No spam, ever.</p>
+            <form class="bbr mt-24" data-w3f>
+              <input type="hidden" name="access_key" value="4d3dbd97-ee4d-4635-b351-b1e18604fbee" />
+              <input type="hidden" name="subject" value="Newsletter signup - Baker Bridge Rescue" />
+              <input type="hidden" name="from_name" value="Baker Bridge Rescue Website" />
+              <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
+              <div class="form-row">
+                <div class="field">
+                  <label for="nl-name">Name</label>
+                  <input id="nl-name" name="name" type="text" required autocomplete="name" />
+                </div>
+                <div class="field">
+                  <label for="nl-email">Email</label>
+                  <input id="nl-email" name="email" type="email" required autocomplete="email" />
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary" type="submit">Sign me up</button>
+              </div>
+              <p class="form-success hidden">You are on the list. Thank you for standing with the animals.</p>
+              <p class="form-error hidden">Something went wrong. Please try again, or email us directly.</p>
+            </form>
+          </div>
+          <div class="art reveal reveal-d2">
+            <div class="photo-frame">
+              <img src="assets/photos/beagle-bandana.jpg" alt="A rescued beagle wearing a bandana" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap top">
+      <div>
+        <div class="footer-brand">
+          Baker Bridge Rescue
+        </div>
+        <p class="footer-mission">Advocating for humane laws, educating owners, and providing lifelong sanctuary care for the animals still in our keeping. Cleveland, Tennessee. Since 1996.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Store</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:bakerbridgerescue@aol.com">bakerbridgerescue@aol.com</a></li>
+          <li><a href="https://www.facebook.com/BakerBridgeRescue/" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EB9VP54KJB4Y6" target="_blank" rel="noopener">Donate with PayPal</a></li>
+          <li>Cleveland, Tennessee</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap bottom">
+      <span>&copy; <span id="year">2026</span> Baker Bridge Rescue. All rights reserved.</span>
+      <span><a href="admin/">Admin</a> &middot; Site by <a href="https://sitesbymax.com" target="_blank" rel="noopener">Sites by Max</a></span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/site.js"></script>
+  <script>
+    BBRShop.mount("#featured-store", { limit: 4, emptyMsg: "New products are on the way. Check back soon." });
+  </script>
 </body>
 </html>
