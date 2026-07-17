@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baker Bridge Rescue &mdash; Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <ellipse cx="12" cy="16.2" rx="4.4" ry="3.9"/>
+            <ellipse cx="4.9" cy="10.6" rx="1.9" ry="2.5" transform="rotate(-22 4.9 10.6)"/>
+            <ellipse cx="9.3" cy="6.9" rx="2" ry="2.7" transform="rotate(-8 9.3 6.9)"/>
+            <ellipse cx="14.7" cy="6.9" rx="2" ry="2.7" transform="rotate(8 14.7 6.9)"/>
+            <ellipse cx="19.1" cy="10.6" rx="1.9" ry="2.5" transform="rotate(22 19.1 10.6)"/>
+          </svg>
+        </span>
+        <h1 class="brand-name">Baker Bridge Rescue <span class="brand-sub">Admin</span></h1>
+        <span id="env-badge" class="env-badge"></span>
+      </div>
+      <div class="header-actions">
+        <span id="welcome-message" class="welcome-message hidden"></span>
+        <a href="/" id="home-btn" class="btn btn-ghost">Home</a>
+        <button id="logout-btn" class="btn btn-ghost hidden">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+    <p id="global-error" class="error hidden"></p>
+
+    <!-- Login -->
+    <section id="login-section" class="card hidden">
+      <h2>Log in</h2>
+      <form id="login-form">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required autocomplete="username" />
+
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required autocomplete="current-password" />
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="login-remember-me" />
+          Remember me (stay logged in, skip the 1-hour idle timeout)
+        </label>
+
+        <button type="submit" class="btn">Log in</button>
+      </form>
+    </section>
+
+    <!-- MFA enrollment (first-time setup) -->
+    <section id="mfa-enroll-section" class="card hidden">
+      <h2>Set up two-factor authentication</h2>
+      <p>Scan this QR code with your authenticator app (e.g. Google Authenticator, 1Password, Authy), then enter the 6-digit code it generates.</p>
+      <div id="mfa-qr" class="mfa-qr"></div>
+      <p class="mfa-secret">Manual entry code: <code id="mfa-secret-text"></code></p>
+      <form id="mfa-enroll-form">
+        <label for="mfa-enroll-code">6-digit code</label>
+        <input type="text" id="mfa-enroll-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code" />
+        <button type="submit" class="btn">Verify &amp; enable 2FA</button>
+      </form>
+    </section>
+
+    <!-- MFA challenge (returning user) -->
+    <section id="mfa-challenge-section" class="card hidden">
+      <h2>Enter your 2FA code</h2>
+      <form id="mfa-challenge-form">
+        <label for="mfa-challenge-code">6-digit code</label>
+        <input type="text" id="mfa-challenge-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code" />
+        <button type="submit" class="btn">Verify</button>
+      </form>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard-section" class="hidden">
+      <div class="card">
+        <div class="card-header-row">
+          <div class="collapsible-header">
+            <button
+              type="button"
+              id="mfa-toggle-btn"
+              class="collapse-toggle-btn"
+              aria-expanded="false"
+              aria-controls="mfa-collapsible-content"
+              aria-label="Toggle two-factor authentication section"
+            >+</button>
+            <h2>
+              <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3l7 3v5c0 4.4-3 8.1-7 9.5C8 19.1 5 15.4 5 11V6l7-3z"/>
+                <path d="M9.5 11.5l2 2 3.5-3.5"/>
+              </svg>
+              Two-factor authentication
+            </h2>
+          </div>
+          <button id="open-mfa-drawer-btn" class="btn btn-small">+ Add backup authenticator</button>
+        </div>
+        <div id="mfa-collapsible-content" class="collapsible-content hidden">
+          <p class="muted">
+            Enroll a second authenticator (e.g. a password manager app) so you're not locked out if you lose your phone.
+          </p>
+          <div id="mfa-factors-list" class="mfa-factors-list">
+            <p class="muted">Loading&hellip;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header-row">
+          <h2>Products</h2>
+          <div class="card-header-actions">
+            <button id="save-layout-btn" class="btn btn-small" disabled>Save layout</button>
+            <button id="open-add-drawer-btn" class="btn btn-small">+ Add product</button>
+          </div>
+        </div>
+        <div class="tabs">
+          <button type="button" class="tab-btn active" id="tab-shop-btn" data-tab="shop">Shop</button>
+          <button type="button" class="tab-btn" id="tab-deactivated-btn" data-tab="deactivated">Deactivated</button>
+        </div>
+        <div id="products-list" class="products-grid">
+          <p class="muted">Loading products&hellip;</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Add backup authenticator drawer -->
+  <div id="mfa-add-drawer" class="drawer hidden">
+    <div class="drawer-overlay" id="mfa-drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-panel-header">
+        <h2>Add backup authenticator</h2>
+        <button type="button" id="close-mfa-drawer-btn" class="btn-icon" aria-label="Close">&times;</button>
+      </div>
+      <p>Scan this QR code with a different authenticator app or device, then enter the 6-digit code it generates.</p>
+      <div id="mfa-add-qr" class="mfa-qr"></div>
+      <p class="mfa-secret">Manual entry code: <code id="mfa-add-secret-text"></code></p>
+      <form id="mfa-add-form">
+        <label for="mfa-add-code">6-digit code</label>
+        <input type="text" id="mfa-add-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code" />
+        <button type="submit" class="btn">Verify &amp; add</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add product drawer -->
+  <div id="add-product-drawer" class="drawer hidden">
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-panel-header">
+        <h2 id="drawer-title">Add product</h2>
+        <button type="button" id="close-add-drawer-btn" class="btn-icon" aria-label="Close">&times;</button>
+      </div>
+      <form id="add-product-form">
+        <input type="hidden" id="product-id" />
+
+        <label for="product-name">Name <span class="required">*</span></label>
+        <input type="text" id="product-name" required />
+
+        <label for="product-description">Description</label>
+        <textarea id="product-description" rows="3"></textarea>
+
+        <label for="product-price">Price ($)</label>
+        <input type="number" id="product-price" step="0.01" min="0" />
+
+        <label for="product-image-url">Thumbnail</label>
+        <div class="input-with-upload">
+          <input type="url" id="product-image-url" placeholder="https://... or upload" />
+          <button type="button" id="upload-thumbnail-btn" class="btn btn-secondary btn-small">Upload</button>
+        </div>
+
+        <label>Additional images</label>
+        <div id="additional-images-list" class="additional-images-list"></div>
+        <div class="image-actions-row">
+          <button type="button" id="add-image-url-btn" class="btn btn-secondary btn-small">+ Add image URL</button>
+          <button type="button" id="upload-images-btn" class="btn btn-secondary btn-small">Upload images</button>
+        </div>
+
+        <input type="file" id="image-file-input" accept="image/*" multiple hidden />
+
+        <label for="product-shop-url">Shop URL <span class="required">*</span></label>
+        <input type="url" id="product-shop-url" required />
+
+        <button type="submit" id="drawer-submit-btn" class="btn">Add product</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirm dialog (reusable) -->
+  <div id="confirm-dialog" class="dialog-overlay hidden">
+    <div class="dialog-box">
+      <h3 id="confirm-dialog-title"></h3>
+      <p id="confirm-dialog-message"></p>
+      <div class="dialog-actions">
+        <button type="button" id="confirm-dialog-cancel" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="confirm-dialog-confirm" class="btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <script src="../config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
