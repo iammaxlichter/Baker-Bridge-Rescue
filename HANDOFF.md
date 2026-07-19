@@ -1,69 +1,53 @@
-# Baker Bridge Rescue — Rebuild Handoff
+# Baker Bridge Rescue - Rebuild Handoff (v2 design)
 
-Full redesign: hero video landing, live Supabase-powered store, About, Gallery,
-Resources, and Contact. The `/admin` dashboard is untouched and the store reads
-from the same `products` table it manages.
+Full visual revamp on top of the working build. Same pages, same Supabase
+wiring, new design system. The /admin dashboard is untouched.
+
+## The design, briefly
+
+- Palette: warm white paper (#FFFCF5), marigold gold (#F0B03F) as the single
+  action color, lake blue (#4E7CA1) for links, warm charcoal ink (#322D26).
+  No green, no terracotta, no dark footer, no gradients.
+- Type: Young Serif for headings, Figtree for body and UI.
+- Photos sit in white album frames with captions, a few gently tilted.
+- The one flourish: a hand drawn gold underline that draws itself in, under
+  "second chances" in the hero and under "whole" in The Eyes quote.
+- Stitched dashes (buttons, wish panel, dividers, timeline) echo a bandana.
+  The bridge divider, running dog, and paw print decorations are gone. The
+  only paw left is the favicon.
+- Reduced motion is respected everywhere.
 
 ## Run it
 
-1. Copy `config.example.js` to `config.js` and fill in the Supabase values
-   (you already have this locally; it stays gitignored).
+1. Copy `config.example.js` to `config.js` and fill in the Supabase values.
 2. Serve the folder (`npx serve .` or push to Cloudflare Pages).
 3. `_redirects` is unchanged, so `/admin` keeps working.
-
-## File map
-
-- `index.html` — hero video, bridge divider animation, featured store (first 4
-  products), pivot statement, mission pillars, Doc's video, testimonials,
-  The Eyes, support grid, affiliates, partners, newsletter
-- `shop.html` — full store grid
-- `about.html` — the letter, timeline, realities of rescue, stance, gratitude
-- `gallery.html` — photo masonry with lightbox, memorial, old-site archives
-- `resources.html` — grant and assistance programs in accordions
-- `contact.html` — Web3Forms contact form
-- `css/site.css`, `js/site.js`, `js/products.js` — shared design system and logic
-- `assets/photos/` — all 30 processed photos (deduped, cropped, compressed, ~2.7MB)
-- `assets/brand/logo.jpg` — the BBR logo, white-trimmed
 
 ## TODO before/after launch
 
 1. **Hero video.** `index.html` plays `assets/hero.mp4` first and falls back to
-   a Pexels placeholder (dogs running in slow motion, hotlinked, UHD so it is
-   heavy). When John's footage is ready, drop it in as `assets/hero.mp4` and
-   optionally delete the Pexels `<source>` line. Any color footage works, the
-   black and white is done in CSS.
-2. **Affiliate links.** Amazon is live with their tag (`pets0cbae-20`). Walmart,
-   Target, Home Depot, Patreon, and Buy Me a Coffee are "coming soon" chips in
-   `index.html`. Swap each chip for an `<a class="chip">` when accounts exist.
-3. **Resources links.** Only orgs with domains I am confident about are linked
-   (RedRover, Petco Love, ASPCA, Best Friends, Maddie's Fund, PetSmart
-   Charities, Bissell). Verify and add URLs for the rest in `resources.html`.
-4. **Memorial photos.** Happy, Perry, and Sherri have text cards in
-   `gallery.html`. If John sends photos, add an `<img>` above each card title.
-   I intentionally did not guess which uploaded dog photos are them.
-5. **Archive images.** The "From the archives" grid hotlinks 10 photos from the
-   old Strikingly CDN. Download them before the old site is cancelled, save to
-   `assets/photos/archive/`, and swap the `src` attributes. URLs are in
-   `gallery.html`.
-6. **Pivot statement.** The "A new chapter" copy in `index.html` is a draft for
-   John to edit (marked with a TODO comment).
-7. **Testimonial videos** (Bella, Coco, Lulu Rose, Logan, Happy, Doc) are the
-   YouTube links from the old site. Confirm John keeps those videos up.
+   a hotlinked Pexels placeholder (UHD, heavy). Drop John's footage in as
+   `assets/hero.mp4`. Color footage is fine, black and white is done in CSS.
+2. **Affiliate links.** Amazon is live with tag `pets0cbae-20`. Walmart,
+   Target, Home Depot, Patreon, and Buy Me a Coffee are "coming soon" chips
+   in `index.html`.
+3. **Resources links.** Only orgs I could confirm are linked. The rest are
+   name only in `resources.html`.
+4. **Memorial photos.** Happy, Perry, and Sherri are text cards in
+   `gallery.html`. Add an `<img>` when John sends photos.
+5. **Archive images.** The archives grid hotlinks 10 photos from the old
+   Strikingly CDN. Download them to `assets/photos/archive/` and swap the
+   `src` attributes before the old site is cancelled.
+6. **Pivot statement.** The "A new chapter" copy in `index.html` is a draft
+   marked with a TODO comment for John.
+
+All of the John facing questions above are collected in a separate Word
+document (Baker-Bridge-Questions-for-John.docx) you can email him as is.
 
 ## Notes
 
-- Supabase RLS already limits anonymous reads to `active = true` products, and
-  the store orders by `sort_order` then `created_at`, matching the admin's
-  "Save layout" feature.
-- Newsletter and contact forms both use the Web3Forms key ending in `...fbee`
-  with different subject lines so John can tell them apart.
-- Fonts: Fraunces (display serif) + Karla (body). The /admin dashboard still
-  uses its own Nunito-based stylesheet.
-- 2026-07 restyle: editorial look — hairline borders instead of shadow cards,
-  ruled list items instead of icon-badge cards, squared 6px buttons. Pawprints
-  reduced to two uses: the favicon and the product-image placeholder in
-  js/products.js. The bridge divider kept its running dog but lost its paws.
-  The AI illustration (adopt-art.jpg) was deleted; the newsletter now uses
-  assets/photos/beagle-bandana.jpg (a real photo).
-- Reduced motion is respected: the running dog, reveals, and counters all
-  degrade to static.
+- Store ordering matches admin: `active = true`, `sort_order` then
+  `created_at`. Nullable price handled. Second image in `image_urls` shows
+  on card hover.
+- Newsletter and contact forms share the Web3Forms key with different
+  subject lines.

@@ -1,8 +1,8 @@
-/* Baker Bridge Rescue — shared site behavior */
+/* Baker Bridge Rescue shared site behavior */
 (function () {
   "use strict";
 
-  /* ----- Header scroll state ----- */
+  /* Header scroll state */
   var header = document.querySelector(".site-header");
   function onScroll() {
     if (!header) return;
@@ -11,7 +11,7 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ----- Mobile nav ----- */
+  /* Mobile nav */
   var toggle = document.querySelector(".nav-toggle");
   var links = document.querySelector(".nav-links");
   if (toggle && links) {
@@ -24,8 +24,8 @@
     });
   }
 
-  /* ----- Scroll reveals (sections, bridge runner) ----- */
-  var revealables = document.querySelectorAll(".reveal, .bridge-divider");
+  /* Scroll reveals. Adding .in also triggers any .uline--scroll inside. */
+  var revealables = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && revealables.length) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -36,14 +36,14 @@
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.18 }
     );
     revealables.forEach(function (el) { io.observe(el); });
   } else {
     revealables.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* ----- Animated counters ----- */
+  /* Animated counters */
   var counters = document.querySelectorAll("[data-count]");
   function animateCount(el) {
     var target = parseInt(el.getAttribute("data-count"), 10);
@@ -81,7 +81,7 @@
     counters.forEach(animateCount);
   }
 
-  /* ----- Lightbox (gallery) ----- */
+  /* Lightbox (gallery) */
   var lbFigures = Array.prototype.slice.call(document.querySelectorAll("[data-lightbox] figure"));
   if (lbFigures.length) {
     var lb = document.createElement("div");
@@ -122,7 +122,7 @@
     });
   }
 
-  /* ----- Web3Forms handling (contact + newsletter) ----- */
+  /* Web3Forms handling (contact + newsletter) */
   var W3F_ENDPOINT = "https://api.web3forms.com/submit";
   document.querySelectorAll("form[data-w3f]").forEach(function (form) {
     form.addEventListener("submit", async function (e) {
@@ -157,7 +157,7 @@
     });
   });
 
-  /* ----- Footer year ----- */
+  /* Footer year */
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
 })();

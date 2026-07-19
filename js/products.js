@@ -1,11 +1,11 @@
-/* Baker Bridge Rescue — public store
+/* Baker Bridge Rescue public store.
    Reads active products from the same Supabase table the /admin dashboard manages.
    Requires: supabase-js v2 UMD + config.js (window.APP_CONFIG) loaded first. */
 (function () {
   "use strict";
 
-  var PAW_SVG =
-    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="16.2" rx="4.4" ry="3.9"/><ellipse cx="4.9" cy="10.6" rx="1.9" ry="2.5" transform="rotate(-22 4.9 10.6)"/><ellipse cx="9.3" cy="6.9" rx="2" ry="2.7" transform="rotate(-8 9.3 6.9)"/><ellipse cx="14.7" cy="6.9" rx="2" ry="2.7" transform="rotate(8 14.7 6.9)"/><ellipse cx="19.1" cy="10.6" rx="1.9" ry="2.5" transform="rotate(22 19.1 10.6)"/></svg>';
+  var IMG_SVG =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="M4.5 17l4.5-4 4 3.5 3-2.5 3.5 3"/></svg>';
 
   var client = null;
 
@@ -53,19 +53,19 @@
         '<img src="' + esc(p.image_url) + '" alt="' + esc(p.name) + '" loading="lazy" ' +
         "onerror=\"this.style.display='none';this.parentElement.querySelector('.ph').style.display='grid'\">" +
         (altImg ? '<img class="alt" src="' + esc(altImg) + '" alt="" loading="lazy" onerror="this.remove()">' : "") +
-        '<span class="ph" style="display:none">' + PAW_SVG + "</span>";
+        '<span class="ph" style="display:none">' + IMG_SVG + "</span>";
     } else {
-      media = '<span class="ph">' + PAW_SVG + "</span>";
+      media = '<span class="ph">' + IMG_SVG + "</span>";
     }
     return (
-      '<article class="product-card reveal in">' +
+      '<article class="product-card">' +
       '<div class="product-media">' + media + "</div>" +
       '<div class="product-body">' +
       "<h3>" + esc(p.name) + "</h3>" +
       (p.price != null ? '<div class="product-price">' + formatPrice(p.price) + "</div>" : "") +
       (p.description ? '<p class="product-desc">' + esc(p.description) + "</p>" : "") +
       (p.shop_url
-        ? '<a class="btn btn-terracotta btn-sm" href="' + esc(p.shop_url) + '" target="_blank" rel="noopener">Shop this item</a>'
+        ? '<a class="btn btn-primary btn-sm" href="' + esc(p.shop_url) + '" target="_blank" rel="noopener">Shop this item</a>'
         : "") +
       "</div></article>"
     );
@@ -75,13 +75,12 @@
     return '<div class="store-state ' + kind + '"><p>' + esc(msg) + "</p></div>";
   }
 
-  /* Mounts the product grid into a container.
-     opts: { limit, emptyMsg } */
+  /* Mounts the product grid into a container. opts: { limit, emptyMsg } */
   async function mount(selector, opts) {
     opts = opts || {};
     var el = document.querySelector(selector);
     if (!el) return;
-    el.innerHTML = stateHTML("loading", "Fetching the goods...");
+    el.innerHTML = stateHTML("loading", "Loading the store");
     try {
       var products = await fetchProducts(opts.limit);
       if (!products.length) {
