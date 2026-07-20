@@ -1,27 +1,24 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Baker Bridge Rescue
-   Warm and bright: sunlight on paper. Marigold and lake blue over warm white.
+   Warm and bright: sunlight on paper. Forest green over warm white.
    Young Serif for headings, Figtree for everything else.
    Photos sit in white album frames. Stitched dashes echo a dog's bandana.
    ========================================================================== */
 
 :root {
-  --paper: #FFFCF5;
+  --paper: #FFFFFF;
   --card: #FFFFFF;
   --ink: #322D26;
   --soft: #6F675C;
   --faint: #A2988A;
-  --gold: #F0B03F;
-  --gold-deep: #DFA02A;
-  --gold-soft: #FCF1D8;
-  --gold-line: #EFDCAE;
-  --bronze: #8C6B1B;
-  --lake: #4E7CA1;
-  --lake-deep: #3B617F;
-  --lake-soft: #EDF3F7;
-  --sun-soft: #FBF3E1;
-  --line: #EFE7D7;
-  --line-deep: #E3D7BF;
+  --green: #3E5C3A;
+  --green-deep: #2E4429;
+  --green-soft: #E7EDE1;
+  --green-line: #C7D6BC;
+  --green-bright: #8FBF7A;
+  --sun-soft: #EEF1E7;
+  --line: #E4E8DD;
+  --line-deep: #CDD6C3;
   --radius: 14px;
   --radius-sm: 10px;
   --shadow-1: 0 1px 2px rgba(50, 45, 38, 0.05), 0 6px 20px rgba(50, 45, 38, 0.06);
@@ -46,10 +43,10 @@ body {
 
 img { max-width: 100%; display: block; }
 
-a { color: var(--lake-deep); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
-a:hover { color: var(--lake); }
+a { color: var(--green-deep); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { color: var(--green); }
 
-::selection { background: var(--gold-soft); }
+::selection { background: var(--green-soft); }
 
 /* ---------- Type ---------- */
 h1, h2, h3, h4 {
@@ -74,7 +71,7 @@ p { margin: 0 0 1em; }
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--green-deep);
   margin-bottom: 14px;
 }
 
@@ -92,7 +89,7 @@ p { margin: 0 0 1em; }
   width: 102%;
   height: 0.3em;
   overflow: visible;
-  color: var(--gold);
+  color: var(--green);
 }
 .uline path {
   fill: none;
@@ -140,10 +137,10 @@ p { margin: 0 0 1em; }
   text-decoration: none;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
-.btn:focus-visible { outline: 3px solid var(--lake); outline-offset: 2px; }
+.btn:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
 
-.btn-primary { background: var(--gold); color: var(--ink); }
-.btn-primary:hover { background: var(--gold-deep); }
+.btn-primary { background: var(--green); color: var(--paper); }
+.btn-primary:hover { background: var(--green-deep); }
 
 .btn-quiet { background: transparent; color: var(--ink); border-color: var(--line-deep); }
 .btn-quiet:hover { border-color: var(--ink); }
@@ -170,7 +167,7 @@ p { margin: 0 0 1em; }
 }
 .site-header.scrolled,
 .site-header.solid {
-  background: rgba(255, 252, 245, 0.94);
+  background: rgba(238, 241, 231, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 1px 0 var(--line);
@@ -201,8 +198,8 @@ p { margin: 0 0 1em; }
   padding: 6px 1px;
   border-bottom: 2px solid transparent;
 }
-.nav-links a:not(.btn):hover { border-color: var(--gold); color: var(--ink); }
-.nav-links a.active { border-color: var(--gold); }
+.nav-links a:not(.btn):hover { border-color: var(--green); color: var(--ink); }
+.nav-links a.active { border-color: var(--green); }
 .on-hero .nav-links a:not(.btn) { color: #fff; }
 .on-hero .nav-links a:not(.btn):hover { color: #fff; }
 .site-header.scrolled .nav-links a:not(.btn) { color: var(--ink); }
@@ -230,7 +227,7 @@ p { margin: 0 0 1em; }
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: var(--paper);
+    background: var(--sun-soft);
     box-shadow: var(--shadow-2);
     border-top: 1px solid var(--line);
     padding: 4px 0 20px;
@@ -257,7 +254,7 @@ p { margin: 0 0 1em; }
   .nav-links.open li:nth-child(7) { transition-delay: 0.24s; }
   .nav-links li + li { border-top: 1px solid var(--line); }
   .nav-links a:not(.btn) { display: block; color: var(--ink) !important; padding: 14px 24px; border-bottom: 0; }
-  .nav-links a.active { color: var(--bronze) !important; }
+  .nav-links a.active { color: var(--green-deep) !important; }
   .nav-donate { display: flex; margin: 14px 24px 2px; }
 }
 
@@ -291,7 +288,7 @@ p { margin: 0 0 1em; }
   padding: 150px 0 120px;
   max-width: 660px;
 }
-.hero .eyebrow { color: var(--gold); }
+.hero .eyebrow { color: var(--green-bright); }
 .hero h1 { color: #fff; text-shadow: 0 1px 16px rgba(0, 0, 0, 0.35); }
 .hero .lede { color: rgba(255, 255, 255, 0.94); font-size: 1.15rem; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
@@ -362,7 +359,7 @@ p { margin: 0 0 1em; }
 /* Kennel tags: pillar cards hang like the tags clipped to a run gate,
    marigold and lake thread alternating, a punched grommet up top. */
 .card.tick {
-  --tag-accent: var(--gold);
+  --tag-accent: var(--green);
   position: relative;
   background: var(--card);
   border: 1.5px solid var(--line-deep);
@@ -372,7 +369,7 @@ p { margin: 0 0 1em; }
   transform: rotate(-1deg);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.card.tick:nth-child(even) { --tag-accent: var(--lake); transform: rotate(1.1deg); }
+.card.tick:nth-child(even) { --tag-accent: var(--green-deep); transform: rotate(1.1deg); }
 .card.tick:hover {
   transform: rotate(0deg) translateY(-3px);
   box-shadow: var(--shadow-2);
@@ -429,7 +426,7 @@ p { margin: 0 0 1em; }
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .product-card:hover { border-color: var(--line-deep); box-shadow: var(--shadow-2); }
-.product-media { aspect-ratio: 1 / 1; background: var(--gold-soft); position: relative; overflow: hidden; }
+.product-media { aspect-ratio: 1 / 1; background: var(--sun-soft); position: relative; overflow: hidden; }
 .product-media img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.25s ease; }
 .product-media img.alt { position: absolute; inset: 0; opacity: 0; }
 .product-card:hover .product-media img.alt { opacity: 1; }
@@ -506,7 +503,7 @@ p { margin: 0 0 1em; }
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .testi-card:hover { border-color: var(--line-deep); box-shadow: var(--shadow-2); }
-.testi-thumb { position: relative; aspect-ratio: 16 / 10; background: var(--gold-soft); }
+.testi-thumb { position: relative; aspect-ratio: 16 / 10; background: var(--sun-soft); }
 .testi-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .testi-thumb .play {
   position: absolute;
@@ -533,7 +530,7 @@ p { margin: 0 0 1em; }
   margin-top: 12px;
   font-size: 0.86rem;
   font-weight: 700;
-  color: var(--lake-deep);
+  color: var(--green-deep);
 }
 
 /* ---------- Quote band (The Eyes) ---------- */
@@ -550,8 +547,8 @@ p { margin: 0 0 1em; }
 
 /* ---------- Wish note ---------- */
 .panel-wish {
-  background: var(--gold-soft);
-  border: 2px dashed var(--gold-line);
+  background: var(--green-soft);
+  border: 2px dashed var(--green-line);
   border-radius: 16px;
   padding: 38px 40px;
   display: grid;
@@ -579,8 +576,8 @@ p { margin: 0 0 1em; }
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  background: var(--gold-soft);
-  border: 1px solid var(--gold-line);
+  background: var(--green-soft);
+  border: 1px solid var(--green-line);
   display: grid;
   place-items: center;
   font-family: var(--font-display);
@@ -612,7 +609,7 @@ p { margin: 0 0 1em; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--green-deep);
   margin-bottom: 12px;
 }
 .partner-card p { color: var(--soft); font-size: 0.95rem; }
@@ -633,15 +630,15 @@ form.bbr { display: grid; gap: 16px; }
 }
 .field input:focus, .field textarea:focus {
   outline: none;
-  border-color: var(--lake);
-  box-shadow: 0 0 0 4px var(--lake-soft);
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px var(--green-soft);
 }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 620px) { .form-row { grid-template-columns: 1fr; } }
 .form-note { font-size: 0.9rem; color: var(--soft); }
 .form-success {
-  background: var(--lake-soft);
-  color: var(--lake-deep);
+  background: var(--green-soft);
+  color: var(--green-deep);
   border-radius: var(--radius-sm);
   padding: 14px 18px;
   font-weight: 600;
@@ -719,7 +716,7 @@ form.bbr { display: grid; gap: 16px; }
   content: "";
   display: block;
   width: 30px;
-  border-top: 2px dashed var(--gold-line);
+  border-top: 2px dashed var(--green-line);
   margin: 0 auto 16px;
 }
 .memorial-card p { color: var(--soft); font-size: 0.95rem; margin: 0; }
@@ -728,7 +725,7 @@ form.bbr { display: grid; gap: 16px; }
   margin-top: 12px;
   font-weight: 700;
   font-size: 0.86rem;
-  color: var(--lake-deep);
+  color: var(--green-deep);
 }
 
 /* ---------- Resources ---------- */
@@ -780,7 +777,7 @@ details.res-group summary .chev svg { width: 20px; height: 20px; display: block;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--green);
   border: 4px solid var(--paper);
   box-shadow: 0 0 0 1.5px var(--line-deep);
 }
@@ -806,7 +803,7 @@ details.res-group summary .chev svg { width: 20px; height: 20px; display: block;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--green-deep);
   margin-bottom: 14px;
 }
 .footer-brand { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); margin-bottom: 12px; }
@@ -814,7 +811,7 @@ details.res-group summary .chev svg { width: 20px; height: 20px; display: block;
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
 .site-footer li { color: var(--soft); font-size: 0.95rem; }
 .site-footer a { color: var(--ink); text-decoration: none; }
-.site-footer a:hover { color: var(--lake-deep); text-decoration: underline; }
+.site-footer a:hover { color: var(--green-deep); text-decoration: underline; }
 .site-footer .bottom {
   border-top: 1px solid var(--line);
   padding-block: 20px;
