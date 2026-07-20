@@ -143,14 +143,6 @@ p { margin: 0 0 1em; }
 .btn:focus-visible { outline: 3px solid var(--lake); outline-offset: 2px; }
 
 .btn-primary { background: var(--gold); color: var(--ink); }
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1.5px dashed rgba(50, 45, 38, 0.3);
-  border-radius: 6px;
-  pointer-events: none;
-}
 .btn-primary:hover { background: var(--gold-deep); }
 
 .btn-quiet { background: transparent; color: var(--ink); border-color: var(--line-deep); }
@@ -367,14 +359,45 @@ p { margin: 0 0 1em; }
 .split.flip { grid-template-columns: 0.95fr 1.05fr; }
 @media (max-width: 900px) { .split, .split.flip { grid-template-columns: 1fr; gap: 36px; } }
 
-/* Small gold tick under card headings */
+/* Kennel tags: pillar cards hang like the tags clipped to a run gate,
+   marigold and lake thread alternating, a punched grommet up top. */
+.card.tick {
+  --tag-accent: var(--gold);
+  position: relative;
+  background: var(--card);
+  border: 1.5px solid var(--line-deep);
+  border-radius: 3px var(--radius-sm) var(--radius-sm) var(--radius-sm);
+  box-shadow: none;
+  padding: 32px 26px 26px;
+  transform: rotate(-1deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card.tick:nth-child(even) { --tag-accent: var(--lake); transform: rotate(1.1deg); }
+.card.tick:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: var(--shadow-2);
+}
+.card.tick::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 24px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--card);
+}
+.tick h3 {
+  margin-top: 2px;
+}
 .tick h3::after {
   content: "";
   display: block;
-  width: 26px;
-  border-top: 3px solid var(--gold);
-  border-radius: 2px;
-  margin-top: 10px;
+  width: 34px;
+  border-top: 2.5px dashed var(--tag-accent);
+  margin-top: 12px;
 }
 
 /* ---------- Stats ---------- */
@@ -829,5 +852,6 @@ details.res-group summary .chev svg { width: 20px; height: 20px; display: block;
   .reveal.tilt-a, .tilt-a { transform: rotate(-1.1deg); }
   .reveal.tilt-b, .tilt-b { transform: rotate(0.9deg); }
   .uline path, .uline--load path, .uline--scroll path { animation: none; transition: none; stroke-dashoffset: 0; }
+  .card.tick { transition: none; }
   .store-state.loading p::after { animation: none; content: "..."; }
 }
