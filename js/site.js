@@ -15,6 +15,18 @@
     }).observe(sentinel);
   }
 
+  /* Some in-app browsers (Messages, Instagram, etc.) ignore the autoplay
+     HTML attribute even with muted + playsinline set. Kick playback
+     explicitly and retry once on first user touch if it was blocked. */
+  var heroVideo = document.querySelector(".hero video");
+  if (heroVideo) {
+    heroVideo.muted = true;
+    var tryPlay = function () { return heroVideo.play(); };
+    tryPlay().catch(function () {
+      document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
+    });
+  }
+
   /* Mobile nav */
   var toggle = document.querySelector(".nav-toggle");
   var links = document.querySelector(".nav-links");
