@@ -43,9 +43,10 @@
     revealables.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* Animated counters */
+  /* Animated counters. Staggered by position so a row of stats
+     arrives one at a time, not as a synced dashboard tick-up. */
   var counters = document.querySelectorAll("[data-count]");
-  function animateCount(el) {
+  function animateCount(el, delay) {
     var target = parseInt(el.getAttribute("data-count"), 10);
     var suffix = el.getAttribute("data-suffix") || "";
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -53,23 +54,29 @@
       el.textContent = target.toLocaleString() + suffix;
       return;
     }
-    var start = null;
-    var dur = 1400;
-    function step(ts) {
-      if (!start) start = ts;
-      var p = Math.min((ts - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased).toLocaleString() + suffix;
-      if (p < 1) requestAnimationFrame(step);
+    var dur = 1000;
+    function run() {
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
     }
-    requestAnimationFrame(step);
+    if (delay) { setTimeout(run, delay); } else { run(); }
   }
   if (counters.length && "IntersectionObserver" in window) {
     var cio = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            animateCount(entry.target);
+            var group = entry.target.closest(".stats") || entry.target.parentElement;
+            var siblings = Array.prototype.slice.call(group.querySelectorAll("[data-count]"));
+            var i = siblings.indexOf(entry.target);
+            animateCount(entry.target, Math.max(i, 0) * 140);
             cio.unobserve(entry.target);
           }
         });
@@ -78,7 +85,7 @@
     );
     counters.forEach(function (el) { cio.observe(el); });
   } else {
-    counters.forEach(animateCount);
+    counters.forEach(function (el) { animateCount(el, 0); });
   }
 
   /* Lightbox (gallery) */
