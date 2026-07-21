@@ -2,14 +2,18 @@
 (function () {
   "use strict";
 
-  /* Header scroll state */
+  /* Header scroll state, via a top-of-page sentinel rather than a
+     scroll listener firing on every frame. */
   var header = document.querySelector(".site-header");
-  function onScroll() {
-    if (!header) return;
-    header.classList.toggle("scrolled", window.scrollY > 24);
+  if (header && "IntersectionObserver" in window) {
+    var sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none;";
+    document.body.prepend(sentinel);
+    new IntersectionObserver(function (entries) {
+      header.classList.toggle("scrolled", !entries[0].isIntersecting);
+    }).observe(sentinel);
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
 
   /* Mobile nav */
   var toggle = document.querySelector(".nav-toggle");
@@ -43,50 +47,13 @@
     revealables.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* Animated counters. Staggered by position so a row of stats
-     arrives one at a time, not as a synced dashboard tick-up. */
-  var counters = document.querySelectorAll("[data-count]");
-  function animateCount(el, delay) {
+  /* Ledger stats are facts, not live metrics, so they are set once and
+     stamped in via CSS (see .reveal.in .stat .num) rather than counted up. */
+  document.querySelectorAll("[data-count]").forEach(function (el) {
     var target = parseInt(el.getAttribute("data-count"), 10);
     var suffix = el.getAttribute("data-suffix") || "";
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      el.textContent = target.toLocaleString() + suffix;
-      return;
-    }
-    var dur = 1000;
-    function run() {
-      var start = null;
-      function step(ts) {
-        if (!start) start = ts;
-        var p = Math.min((ts - start) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased).toLocaleString() + suffix;
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    if (delay) { setTimeout(run, delay); } else { run(); }
-  }
-  if (counters.length && "IntersectionObserver" in window) {
-    var cio = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var group = entry.target.closest(".stats") || entry.target.parentElement;
-            var siblings = Array.prototype.slice.call(group.querySelectorAll("[data-count]"));
-            var i = siblings.indexOf(entry.target);
-            animateCount(entry.target, Math.max(i, 0) * 140);
-            cio.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-    counters.forEach(function (el) { cio.observe(el); });
-  } else {
-    counters.forEach(function (el) { animateCount(el, 0); });
-  }
+    el.textContent = target.toLocaleString() + suffix;
+  });
 
   /* Lightbox (gallery) */
   var lbFigures = Array.prototype.slice.call(document.querySelectorAll("[data-lightbox] figure"));
