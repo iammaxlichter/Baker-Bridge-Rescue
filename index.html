@@ -44,7 +44,10 @@
              uncomment the source below (kept first so it wins over the Pexels placeholder).
              It stays commented out for now because a missing file 404s and blocks autoplay. -->
         <!-- <source src="assets/hero.mp4" type="video/mp4" /> -->
-        <source src="https://videos.pexels.com/video-files/9898282/9898282-uhd_2560_1440_24fps.mp4" type="video/mp4" />
+        <!-- 720p, not the UHD rendition: the 2560x1440 file is 32MB and needs several
+             seconds of buffering before the first frame, which read as "video won't
+             autoplay". Behind the gradient overlay the two are indistinguishable. -->
+        <source src="https://videos.pexels.com/video-files/9898282/9898282-hd_1280_720_24fps.mp4" type="video/mp4" />
       </video>
       <div class="wrap">
         <div class="hero-inner hero-stagger">
