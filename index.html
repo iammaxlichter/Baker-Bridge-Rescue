@@ -39,9 +39,11 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <!-- TODO(Max): drop John's real footage in as assets/hero.mp4. The Pexels clip below is a temporary placeholder. -->
       <video autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
-        <source src="assets/hero.mp4" type="video/mp4" />
+        <!-- TODO(Max): when John's real footage is ready, save it as assets/hero.mp4 and
+             uncomment the source below (kept first so it wins over the Pexels placeholder).
+             It stays commented out for now because a missing file 404s and blocks autoplay. -->
+        <!-- <source src="assets/hero.mp4" type="video/mp4" /> -->
         <source src="https://videos.pexels.com/video-files/9898282/9898282-uhd_2560_1440_24fps.mp4" type="video/mp4" />
       </video>
       <div class="wrap">

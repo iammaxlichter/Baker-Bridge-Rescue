@@ -15,15 +15,24 @@
     }).observe(sentinel);
   }
 
-  /* Some in-app browsers (Messages, Instagram, etc.) ignore the autoplay
-     HTML attribute even with muted + playsinline set. Kick playback
-     explicitly and retry once on first user touch if it was blocked. */
+  /* The hero video autoplays muted. Two things can block the first play():
+     the initial call can land before any media data has loaded (readyState 0),
+     and some in-app browsers (Messages, Instagram) ignore the autoplay
+     attribute outright. So kick it now, again when data actually arrives, and
+     once more on first interaction as a last resort. Calling play() on an
+     already-playing video is a harmless no-op. */
   var heroVideo = document.querySelector(".hero video");
   if (heroVideo) {
     heroVideo.muted = true;
-    var tryPlay = function () { return heroVideo.play(); };
-    tryPlay().catch(function () {
-      document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
+    var kickPlay = function () {
+      var p = heroVideo.play();
+      if (p && typeof p.catch === "function") p.catch(function () {});
+    };
+    kickPlay();
+    heroVideo.addEventListener("loadeddata", kickPlay);
+    heroVideo.addEventListener("canplay", kickPlay);
+    ["pointerdown", "touchstart", "keydown"].forEach(function (evt) {
+      document.addEventListener(evt, kickPlay, { once: true, passive: true });
     });
   }
 
