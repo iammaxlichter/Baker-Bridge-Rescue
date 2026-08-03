@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baker Bridge Rescue | Advocacy and Sanctuary in East Tennessee</title>
-  <meta name="description" content="Baker Bridge Rescue has rehomed more than 1,600 dogs since 1996. Today it carries that work forward as an advocacy and sanctuary organization in Cleveland, Tennessee." />
+  <title>Baker Bridge Rescue | Advocacy and Sanctuary in West Kentucky</title>
+  <meta name="description" content="Baker Bridge Rescue has rehomed more than 1,600 dogs since 1996. Today it carries that work forward as an advocacy and sanctuary organization in West Kentucky." />
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233F7D4E"><ellipse cx="12" cy="16.2" rx="4.4" ry="3.9"/><ellipse cx="4.9" cy="10.6" rx="1.9" ry="2.5" transform="rotate(-22 4.9 10.6)"/><ellipse cx="9.3" cy="6.9" rx="2" ry="2.7" transform="rotate(-8 9.3 6.9)"/><ellipse cx="14.7" cy="6.9" rx="2" ry="2.7" transform="rotate(8 14.7 6.9)"/><ellipse cx="19.1" cy="10.6" rx="1.9" ry="2.5" transform="rotate(22 19.1 10.6)"/></svg>' />
   <meta property="og:title" content="Baker Bridge Rescue" />
-  <meta property="og:description" content="Thirty years of second chances. Now an advocacy and sanctuary organization in East Tennessee." />
+  <meta property="og:description" content="Thirty years of second chances. Now an advocacy and sanctuary organization in West Kentucky." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,9 +17,9 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header on-hero">
+  <header class="site-header solid">
     <div class="wrap">
-      <a class="brand" href="index.html">Baker Bridge Rescue</a>
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/brand/logo.png" alt="Baker Bridge Rescue" /></a>
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -51,7 +51,7 @@
       </video>
       <div class="wrap">
         <div class="hero-inner hero-stagger">
-          <span class="eyebrow">Cleveland, Tennessee &middot; Since 1996</span>
+          <span class="eyebrow">West Kentucky &middot; Since 1996</span>
           <h1>Thirty years of <span class="uline uline--load">second chances<svg viewBox="0 0 240 12" preserveAspectRatio="none" aria-hidden="true"><path d="M4 6 L236 6"/></svg></span>.</h1>
           <p class="lede">Baker Bridge Rescue has rehomed more than 1,600 dogs since 1996. Today that same love keeps eleven lucky residents safe, fed, and full of life.</p>
           <div class="hero-ctas">
@@ -59,18 +59,6 @@
             <a class="btn btn-on-dark" href="about.html">Our story</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ FEATURED STORE ============ -->
-    <section id="store" class="section">
-      <div class="wrap">
-        <div class="section-head center">
-          <h2>The Rescue Store</h2>
-          <p class="lede">Shirts, mugs, and gifts. Every order helps feed and care for the residents. Items are printed and shipped by our print partner.</p>
-        </div>
-        <div id="featured-store"></div>
-        <p class="center mt-40"><a class="btn btn-quiet" href="shop.html">See the full store</a></p>
       </div>
     </section>
 
@@ -97,7 +85,7 @@
           </figure>
         </div>
 
-        <div class="grid grid-2 mt-40 reveal">
+        <div class="grid grid-2 mt-40 reveal" id="home-cards-pillars">
           <div class="card case">
             <h3>Advocacy</h3>
             <p class="muted">Pushing for humane laws and responsible ownership, from city hall to Washington.</p>
@@ -118,20 +106,15 @@
       </div>
     </section>
 
-    <!-- ============ DOC'S STORY ============ -->
-    <section class="section wash accent-red">
+    <!-- ============ FEATURED STORE ============ -->
+    <section id="store" class="section accent-terracotta">
       <div class="wrap">
-        <div class="split flip">
-          <div class="video-embed reveal">
-            <iframe src="https://www.youtube.com/embed/f0LQsP3w0jo" title="Doc's story" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="reveal reveal-d2">
-            <span class="eyebrow">A success story</span>
-            <h2>Doc's story</h2>
-            <p>Tyson, better known as Doc, came to us feral, terrified, and covered in mange. We nursed his body back to health. The fear took longer.</p>
-            <p>Then a patient young couple took him home and kept working. Watch him now. Off leash, confident, and free. This is why we did it for thirty years.</p>
-          </div>
+        <div class="section-head center">
+          <h2>The Rescue Store</h2>
+          <p class="lede">Shirts, mugs, and gifts. Every order helps feed and care for the residents. Items are printed and shipped by our print partner.</p>
         </div>
+        <div id="featured-store"></div>
+        <p class="center mt-40"><a class="btn btn-quiet" href="shop.html">See the full store</a></p>
       </div>
     </section>
 
@@ -142,7 +125,9 @@
           <h2>Happy endings</h2>
           <p class="lede">Real families who opened their homes. Tap a card to watch their videos.</p>
         </div>
-        <div class="testi-row">
+        <!-- Filled from the testimonials table (managed in /admin). These three
+             cards stay as a fallback if the table is empty or unreachable. -->
+        <div class="testi-row" id="happy-endings">
           <a class="testi-card" href="https://youtu.be/jcmB3L-pSvM" target="_blank" rel="noopener">
             <div class="testi-thumb">
               <img src="https://img.youtube.com/vi/jcmB3L-pSvM/hqdefault.jpg" alt="Coco's video" loading="lazy" />
@@ -196,7 +181,7 @@
           <h2>What your gift provides</h2>
           <p class="lede">BBR runs on donations alone. No grants and no government funding. Just animal lovers like you. Here is where your gift goes.</p>
         </div>
-        <div class="grid grid-3 reveal">
+        <div class="grid grid-3 reveal" id="home-cards-gifts">
           <div class="card case">
             <h3>Fencing</h3>
             <p class="muted">Safe play space and separation for the dogs who need their own room to roam.</p>
@@ -238,7 +223,7 @@
     </section>
 
     <!-- ============ AFFILIATES ============ -->
-    <section class="section tight">
+    <section class="section tight accent-teal">
       <div class="wrap">
         <div class="section-head reveal">
           <h2>Shop through our links</h2>
@@ -262,17 +247,17 @@
         <div class="section-head reveal">
           <h2>With thanks to our partners</h2>
         </div>
-        <div class="grid grid-2">
+        <div class="grid grid-2 reveal" id="home-cards-partners">
           <div class="card partner-card reveal">
             <h3>Dixie Day Spay</h3>
-            <div class="tag">Low cost spay and neuter &middot; Cleveland, TN</div>
+            <div class="tag">Low cost spay and neuter</div>
             <p>A nonprofit clinic working to end the killing of healthy companion animals by making spay and neuter surgery affordable and accessible.</p>
-            <div class="meta">182 Airport Rd, Cleveland, TN 37312 &middot; (423) 476-7122</div>
+            <div class="meta">(423) 476-7122</div>
             <a class="btn btn-quiet btn-sm" href="http://www.dixiedogsandcats.org/" target="_blank" rel="noopener">Visit Dixie Day Spay</a>
           </div>
           <div class="card partner-card reveal reveal-d1">
             <h3>Rescue Riders LLC</h3>
-            <div class="tag">Licensed pet transport &middot; Southeast TN</div>
+            <div class="tag">Licensed pet transport</div>
             <p>A USDA approved transport that carried our dogs to their new families across Maryland, Pennsylvania, New York, Connecticut, and New Hampshire.</p>
             <div class="meta">rescue.riders.llc@gmail.com</div>
             <a class="btn btn-quiet btn-sm" href="https://bookwhen.com/pooches" target="_blank" rel="noopener">Visit Rescue Riders</a>
@@ -283,7 +268,7 @@
     </section>
 
     <!-- ============ NEWSLETTER ============ -->
-    <section class="section wash">
+    <section class="section wash accent-teal">
       <div class="wrap">
         <div class="split">
           <div class="reveal">
@@ -324,8 +309,8 @@
   <footer class="site-footer">
     <div class="wrap top">
       <div>
-        <div class="footer-brand">Baker Bridge Rescue</div>
-        <p class="footer-mission">Advocating for humane laws, educating owners, and providing lifelong sanctuary care for the animals still in our keeping. Cleveland, Tennessee. Since 1996.</p>
+        <img class="footer-logo" src="assets/brand/logo.png" alt="Baker Bridge Rescue" />
+        <p class="footer-mission">Advocating for humane laws, educating owners, and providing lifelong sanctuary care for the animals still in our keeping. West Kentucky. Since 1996.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -344,7 +329,7 @@
           <li><a href="mailto:bakerbridgerescue@aol.com">bakerbridgerescue@aol.com</a></li>
           <li><a href="https://www.facebook.com/BakerBridgeRescue/" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EB9VP54KJB4Y6" target="_blank" rel="noopener">Donate with PayPal</a></li>
-          <li>Cleveland, Tennessee</li>
+          <li>West Kentucky</li>
         </ul>
       </div>
     </div>
@@ -356,10 +341,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="config"></script>
-  <script src="js/products.js"></script>
+  <script src="js/products.j"></script>
+  <script src="js/testimonials.js"></script>
+  <script src="js/home-cards.js"></script>
   <script src="js/site.js"></script>
   <script>
-    BBRShop.mount("#featured-store", { limit: 4, emptyMsg: "New products are on the way. Check back soon." });
+    BBRShop.mount("#featured-store", { featured: true, limit: 4, emptyMsg: "New products are on the way. Check back soon." });
   </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pet Gallery | Baker Bridge Rescue</title>
-  <meta name="description" content="Photos from thirty years of dogs, cats, and rescues at Baker Bridge Rescue in Cleveland, Tennessee." />
+  <meta name="description" content="Photos from thirty years of dogs, cats, and rescues at Baker Bridge Rescue in West Kentucky." />
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233F7D4E"><ellipse cx="12" cy="16.2" rx="4.4" ry="3.9"/><ellipse cx="4.9" cy="10.6" rx="1.9" ry="2.5" transform="rotate(-22 4.9 10.6)"/><ellipse cx="9.3" cy="6.9" rx="2" ry="2.7" transform="rotate(-8 9.3 6.9)"/><ellipse cx="14.7" cy="6.9" rx="2" ry="2.7" transform="rotate(8 14.7 6.9)"/><ellipse cx="19.1" cy="10.6" rx="1.9" ry="2.5" transform="rotate(22 19.1 10.6)"/></svg>' />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,7 @@
 
   <header class="site-header solid">
     <div class="wrap">
-      <a class="brand" href="index.html">Baker Bridge Rescue</a>
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/brand/logo.png" alt="Baker Bridge Rescue" /></a>
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -42,39 +42,26 @@
       </div>
     </section>
 
-    <section class="section tight">
+    <!-- Both grids below are filled in from the gallery_photos table in
+         Supabase and are managed at /admin. A section with no photos in its
+         category removes itself. -->
+    <section class="section tight" data-gallery="new">
       <div class="wrap">
-        <div class="masonry" data-lightbox>
-          <figure><img src="assets/photos/golden-pond.jpg" alt="Golden retriever by the pond" loading="lazy" /></figure>
-          <figure><img src="assets/photos/john-betty.jpg" alt="Betty and John Baker with a senior rescue dog" loading="lazy" /></figure>
-          <figure><img src="assets/photos/heeler-smile.jpg" alt="Red heeler with a big smile" loading="lazy" /></figure>
-          <figure><img src="assets/photos/beagles-cuddle.jpg" alt="Two beagles cuddling on the couch" loading="lazy" /></figure>
-          <figure><img src="assets/photos/betty-pups.jpg" alt="Three puppies in one armful" loading="lazy" /></figure>
-          <figure><img src="assets/photos/tan-dog-close.jpg" alt="Tan dog looking at the camera" loading="lazy" /></figure>
-          <figure><img src="assets/photos/adopter-husky.jpg" alt="Adopter selfie with a happy husky" loading="lazy" /></figure>
-          <figure><img src="assets/photos/white-cat.jpg" alt="White cat resting in the shade" loading="lazy" /></figure>
-          <figure><img src="assets/photos/john-shepherd.jpg" alt="John with a shepherd mix" loading="lazy" /></figure>
-          <figure><img src="assets/photos/sunset-pond.jpg" alt="Sunset over the sanctuary pond" loading="lazy" /></figure>
-          <figure><img src="assets/photos/betty-beagle.jpg" alt="Betty kissing a rescued hound" loading="lazy" /></figure>
-          <figure><img src="assets/photos/pom-senior.jpg" alt="Senior Pomeranian mix" loading="lazy" /></figure>
-          <figure><img src="assets/photos/adopter-pittie.jpg" alt="A rescued dog giving kisses in the grass" loading="lazy" /></figure>
-          <figure><img src="assets/photos/tan-dog-rest.jpg" alt="Tan dog resting on a soft bed" loading="lazy" /></figure>
-          <figure><img src="assets/photos/john-pyrenees.jpg" alt="John with two Great Pyrenees" loading="lazy" /></figure>
-          <figure><img src="assets/photos/cat-box.jpg" alt="Tuxedo cat in a cardboard box" loading="lazy" /></figure>
-          <figure><img src="assets/photos/aussie-love.jpg" alt="An Australian shepherd leaning in" loading="lazy" /></figure>
-          <figure><img src="assets/photos/rescue-pup.jpg" alt="A rescued puppy safe in caring arms" loading="lazy" /></figure>
-          <figure><img src="assets/photos/bw-dog-smile.jpg" alt="Black and white dog smiling" loading="lazy" /></figure>
-          <figure><img src="assets/photos/betty-chi.jpg" alt="Betty kissing a senior chihuahua" loading="lazy" /></figure>
-          <figure><img src="assets/photos/black-dog-pond.jpg" alt="Black dog watching the pond" loading="lazy" /></figure>
-          <figure><img src="assets/photos/adopter-pom.jpg" alt="Adopter with her Pomeranian mix" loading="lazy" /></figure>
-          <figure><img src="assets/photos/pup-love.jpg" alt="A happy dog getting head scratches" loading="lazy" /></figure>
-          <figure><img src="assets/photos/adopter-collie.jpg" alt="A quiet moment with a border collie" loading="lazy" /></figure>
-          <figure><img src="assets/photos/winter-pond.jpg" alt="The pond in winter snow" loading="lazy" /></figure>
-          <figure><img src="assets/photos/john-terrier.jpg" alt="John with a terrier mix pup" loading="lazy" /></figure>
-          <figure><img src="assets/photos/adopter-golden.jpg" alt="Adopter selfie with a golden" loading="lazy" /></figure>
-          <figure><img src="assets/photos/vintage-boy.jpg" alt="A boy with two dogs, an old family photo" loading="lazy" /></figure>
-          <figure><img src="assets/photos/on-call.jpg" alt="Working a rescue with local deputies" loading="lazy" /></figure>
+        <div class="section-head reveal">
+          <h2>The sanctuary today</h2>
+          <p class="lede">The animals still in our keeping, and the place they call home.</p>
         </div>
+        <div class="masonry" data-lightbox></div>
+      </div>
+    </section>
+
+    <section class="section tight accent-gold" data-gallery="old">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>From the rescue years</h2>
+          <p class="lede">Dogs, cats, adopters, and rescues from three decades of Baker Bridge Rescue.</p>
+        </div>
+        <div class="masonry" data-lightbox></div>
       </div>
     </section>
 
@@ -102,37 +89,13 @@
       </div>
     </section>
 
-    <section class="section tight accent-gold">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <h2>From the archives</h2>
-          <p class="lede">Photos from the original Baker Bridge Rescue site, going back years.</p>
-        </div>
-        <!-- HANDOFF(Max): these images are hotlinked from the old Strikingly CDN.
-             Download them into assets/photos/archive/ and swap the src attributes
-             before the old site is shut down. Full list in HANDOFF.md. -->
-        <div class="masonry" data-lightbox>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/a04b9e1f-2476-4ef4-addf-76bf593604cc_culhiq.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/faeefc9f-be0e-45e4-bd72-0922d667c154_ifd3bo.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/100_1281_pkiwxb.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/f753a7b7-b2f0-4598-9f08-ace2be66ba97_r3jke0.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/63f2fdc5-c929-456c-acbc-7e9c9e0503d0_rgugfc.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/IMG_1428_xertvf.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/IMG_0266_ntvwiq.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/DSC00864_yoi2j3.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/1bd58c69-7a12-4cd4-81ac-518915416661_safyyl.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-          <figure><img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_1200,w_1200,f_auto,q_auto/1327669/3ac2eb5e-687e-460d-b8c6-d15d4614a579_gkp7hp.jpg" alt="Archive rescue photo" loading="lazy" /></figure>
-        </div>
-      </div>
-    </section>
-
   </main>
 
   <footer class="site-footer">
     <div class="wrap top">
       <div>
-        <div class="footer-brand">Baker Bridge Rescue</div>
-        <p class="footer-mission">Advocating for humane laws, educating owners, and providing lifelong sanctuary care for the animals still in our keeping. Cleveland, Tennessee. Since 1996.</p>
+        <img class="footer-logo" src="assets/brand/logo.png" alt="Baker Bridge Rescue" />
+        <p class="footer-mission">Advocating for humane laws, educating owners, and providing lifelong sanctuary care for the animals still in our keeping. West Kentucky. Since 1996.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -151,7 +114,7 @@
           <li><a href="mailto:bakerbridgerescue@aol.com">bakerbridgerescue@aol.com</a></li>
           <li><a href="https://www.facebook.com/BakerBridgeRescue/" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EB9VP54KJB4Y6" target="_blank" rel="noopener">Donate with PayPal</a></li>
-          <li>Cleveland, Tennessee</li>
+          <li>West Kentucky</li>
         </ul>
       </div>
     </div>
@@ -161,6 +124,9 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="config"></script>
+  <script src="js/gallery.js"></script>
   <script src="js/site.js"></script>
 </body>
 </html>

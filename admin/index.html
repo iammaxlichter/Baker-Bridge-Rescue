@@ -23,7 +23,6 @@
           </svg>
         </span>
         <h1 class="brand-name">Baker Bridge Rescue <span class="brand-sub">Admin</span></h1>
-        <span id="env-badge" class="env-badge"></span>
       </div>
       <div class="header-actions">
         <span id="welcome-message" class="welcome-message hidden"></span>
@@ -80,7 +79,16 @@
 
     <!-- Dashboard -->
     <section id="dashboard-section" class="hidden">
-      <div class="card">
+      <div class="admin-tabs" role="tablist">
+        <button type="button" class="admin-tab active" data-panel="products">Products</button>
+        <button type="button" class="admin-tab" data-panel="gallery">Gallery</button>
+        <button type="button" class="admin-tab" data-panel="testimonials">Happy endings</button>
+        <button type="button" class="admin-tab" data-panel="resources">Resources</button>
+        <button type="button" class="admin-tab" data-panel="homecards">Home cards</button>
+        <button type="button" class="admin-tab" data-panel="security">Security</button>
+      </div>
+
+      <div class="card admin-panel hidden" data-panel="security">
         <div class="card-header-row">
           <div class="collapsible-header">
             <button
@@ -111,7 +119,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card admin-panel" data-panel="products">
         <div class="card-header-row">
           <h2>Products</h2>
           <div class="card-header-actions">
@@ -121,10 +129,157 @@
         </div>
         <div class="tabs">
           <button type="button" class="tab-btn active" id="tab-shop-btn" data-tab="shop">Shop</button>
+          <button type="button" class="tab-btn" id="tab-home-btn" data-tab="home">Home preview</button>
           <button type="button" class="tab-btn" id="tab-deactivated-btn" data-tab="deactivated">Deactivated</button>
         </div>
         <div id="products-list" class="products-grid">
           <p class="muted">Loading products&hellip;</p>
+        </div>
+      </div>
+
+      <div class="card admin-panel hidden" data-panel="gallery">
+        <div class="card-header-row">
+          <h2>
+            <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+              <circle cx="8.6" cy="10" r="1.6"/>
+              <path d="M4 16.5l4.6-4 3.9 3.4 3-2.5 4.5 3.6"/>
+            </svg>
+            Gallery photos
+          </h2>
+          <div class="card-header-actions">
+            <button id="save-gallery-btn" class="btn btn-small" disabled>Save layout</button>
+            <button id="open-photo-drawer-btn" class="btn btn-small">+ Add photos</button>
+          </div>
+        </div>
+        <p class="muted">
+          Drag a photo by its handle to reorder it, or drag it into another group to move it there.
+          Nothing changes on the public gallery page until you press <strong>Save layout</strong>.
+        </p>
+
+        <div class="gallery-zone" data-zone="new">
+          <div class="gallery-zone-head">
+            <h3>The sanctuary today</h3>
+            <span class="zone-count" id="gallery-count-new">0</span>
+          </div>
+          <p class="gallery-zone-note">The new sanctuary. This group shows first on the gallery page. Drag photos between the three columns to match how they stack on the site.</p>
+          <div class="gallery-cols">
+            <div class="gallery-col" id="gallery-list-new-0"></div>
+            <div class="gallery-col" id="gallery-list-new-1"></div>
+            <div class="gallery-col" id="gallery-list-new-2"></div>
+          </div>
+        </div>
+
+        <div class="gallery-zone" data-zone="old">
+          <div class="gallery-zone-head">
+            <h3>The rescue years</h3>
+            <span class="zone-count" id="gallery-count-old">0</span>
+          </div>
+          <p class="gallery-zone-note">Photos from the Baker Bridge Rescue that was. Shows second. Drag photos between the three columns to match how they stack on the site.</p>
+          <div class="gallery-cols">
+            <div class="gallery-col" id="gallery-list-old-0"></div>
+            <div class="gallery-col" id="gallery-list-old-1"></div>
+            <div class="gallery-col" id="gallery-list-old-2"></div>
+          </div>
+        </div>
+
+        <div class="gallery-zone zone-hidden" data-zone="hidden">
+          <div class="gallery-zone-head">
+            <h3>Hidden</h3>
+            <span class="zone-count" id="gallery-count-hidden">0</span>
+          </div>
+          <p class="gallery-zone-note">Kept in the system but not shown on the site. Drag a photo here to take it off the page.</p>
+          <div class="gallery-grid" id="gallery-list-hidden"></div>
+        </div>
+      </div>
+
+      <div class="card admin-panel hidden" data-panel="testimonials">
+        <div class="card-header-row">
+          <h2>
+            <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+              <path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/>
+            </svg>
+            Happy endings videos
+          </h2>
+          <div class="card-header-actions">
+            <button id="save-testi-btn" class="btn btn-small" disabled>Save layout</button>
+            <button id="open-testi-drawer-btn" class="btn btn-small">+ Add video</button>
+          </div>
+        </div>
+        <p class="muted">
+          The video cards in the "Happy endings" row on the home page. Drag by the handle to reorder.
+          Nothing changes on the site until you press <strong>Save layout</strong>.
+        </p>
+        <div class="gallery-grid" id="testi-list"></div>
+      </div>
+
+      <div class="card admin-panel hidden" data-panel="resources">
+        <div class="card-header-row">
+          <h2>
+            <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h10"/>
+            </svg>
+            Resources
+          </h2>
+          <div class="card-header-actions">
+            <button id="save-resources-btn" class="btn btn-small" disabled>Save layout</button>
+            <button id="open-resource-drawer-btn" class="btn btn-small">+ Add resource</button>
+          </div>
+        </div>
+        <p class="muted">
+          The link lists on the Resources page. Drag by the handle to reorder or move an item into another group.
+          Nothing changes on the site until you press <strong>Save layout</strong>.
+        </p>
+
+        <div class="res-admin-group">
+          <div class="gallery-zone-head"><h3>Emergency and medical help for pet families</h3><span class="zone-count" id="resource-count-emergency">0</span></div>
+          <div class="res-admin-list" id="resource-list-emergency"></div>
+        </div>
+        <div class="res-admin-group">
+          <div class="gallery-zone-head"><h3>Grants for shelters and rescues</h3><span class="zone-count" id="resource-count-shelters">0</span></div>
+          <div class="res-admin-list" id="resource-list-shelters"></div>
+        </div>
+        <div class="res-admin-group">
+          <div class="gallery-zone-head"><h3>Foster support</h3><span class="zone-count" id="resource-count-foster">0</span></div>
+          <div class="res-admin-list" id="resource-list-foster"></div>
+        </div>
+        <div class="res-admin-group">
+          <div class="gallery-zone-head"><h3>Community based support</h3><span class="zone-count" id="resource-count-community">0</span></div>
+          <div class="res-admin-list" id="resource-list-community"></div>
+        </div>
+      </div>
+
+      <div class="card admin-panel hidden" data-panel="homecards">
+        <div class="card-header-row">
+          <h2>
+            <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="8" height="7" rx="1.5"/><rect x="13" y="4" width="8" height="7" rx="1.5"/>
+              <rect x="3" y="13" width="8" height="7" rx="1.5"/><rect x="13" y="13" width="8" height="7" rx="1.5"/>
+            </svg>
+            Home cards
+          </h2>
+          <div class="card-header-actions">
+            <button id="save-homecards-btn" class="btn btn-small" disabled>Save layout</button>
+            <button id="open-homecard-drawer-btn" class="btn btn-small">+ Add card</button>
+          </div>
+        </div>
+        <p class="muted">
+          The green cards under "A new chapter" and the gold cards under "What your gift provides" on the home page.
+          Drag by the handle to reorder or move a card between the two groups. Nothing changes on the site until you press <strong>Save layout</strong>.
+        </p>
+
+        <div class="res-admin-group">
+          <div class="gallery-zone-head"><h3>Mission pillars (green, "A new chapter")</h3><span class="zone-count" id="homecard-count-pillars">0</span></div>
+          <div class="res-admin-list" id="homecard-list-pillars"></div>
+        </div>
+        <div class="res-admin-group">
+          <div class="gallery-zone-head"><h3>Gift needs (gold, "What your gift provides")</h3><span class="zone-count" id="homecard-count-gifts">0</span></div>
+          <div class="res-admin-list" id="homecard-list-gifts"></div>
+        </div>
+        <div class="res-admin-group">
+          <div class="gallery-zone-head"><h3>Partners ("With thanks to our partners")</h3><span class="zone-count" id="homecard-count-partners">0</span></div>
+          <div class="res-admin-list" id="homecard-list-partners"></div>
         </div>
       </div>
     </section>
@@ -192,6 +347,137 @@
     </div>
   </div>
 
+  <!-- Add / edit gallery photo drawer -->
+  <div id="photo-drawer" class="drawer hidden">
+    <div class="drawer-overlay" id="photo-drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-panel-header">
+        <h2 id="photo-drawer-title">Add photos</h2>
+        <button type="button" id="close-photo-drawer-btn" class="btn-icon" aria-label="Close">&times;</button>
+      </div>
+      <form id="photo-form">
+        <input type="hidden" id="photo-id" />
+
+        <label for="photo-category">Group <span class="required">*</span></label>
+        <select id="photo-category">
+          <option value="new">The sanctuary today</option>
+          <option value="old">The rescue years</option>
+        </select>
+
+        <label>Photos <span class="required">*</span></label>
+        <div id="photo-rows" class="photo-rows"></div>
+        <div class="image-actions-row" id="photo-add-actions">
+          <button type="button" id="add-photo-url-btn" class="btn btn-secondary btn-small">+ Add image URL</button>
+          <button type="button" id="upload-photos-btn" class="btn btn-secondary btn-small">Upload photos</button>
+        </div>
+
+        <input type="file" id="photo-file-input" accept="image/*" multiple hidden />
+
+        <button type="submit" id="photo-submit-btn" class="btn">Add photos</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add / edit testimonial video drawer -->
+  <div id="testi-drawer" class="drawer hidden">
+    <div class="drawer-overlay" id="testi-drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-panel-header">
+        <h2 id="testi-drawer-title">Add video</h2>
+        <button type="button" id="close-testi-drawer-btn" class="btn-icon" aria-label="Close">&times;</button>
+      </div>
+      <form id="testi-form">
+        <input type="hidden" id="testi-id" />
+
+        <label for="testi-name">Name <span class="required">*</span></label>
+        <input type="text" id="testi-name" placeholder="Coco" required />
+
+        <label for="testi-url">YouTube link <span class="required">*</span></label>
+        <input type="text" id="testi-url" placeholder="https://youtu.be/..." required />
+
+        <label for="testi-desc">Description</label>
+        <textarea id="testi-desc" rows="3" placeholder="A sentence about their happy ending."></textarea>
+
+        <button type="submit" id="testi-submit-btn" class="btn">Add video</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add / edit resource drawer -->
+  <div id="resource-drawer" class="drawer hidden">
+    <div class="drawer-overlay" id="resource-drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-panel-header">
+        <h2 id="resource-drawer-title">Add resource</h2>
+        <button type="button" id="close-resource-drawer-btn" class="btn-icon" aria-label="Close">&times;</button>
+      </div>
+      <form id="resource-form">
+        <input type="hidden" id="resource-id" />
+
+        <label for="resource-group">Group <span class="required">*</span></label>
+        <select id="resource-group">
+          <option value="emergency">Emergency and medical help for pet families</option>
+          <option value="shelters">Grants for shelters and rescues</option>
+          <option value="foster">Foster support</option>
+          <option value="community">Community based support</option>
+        </select>
+
+        <label for="resource-name">Name <span class="required">*</span></label>
+        <input type="text" id="resource-name" placeholder="RedRover Relief" required />
+
+        <label for="resource-url">Link <span style="font-weight: 400; color: var(--brown-faint);">(optional)</span></label>
+        <input type="text" id="resource-url" placeholder="https://..." />
+
+        <label for="resource-desc">Description</label>
+        <textarea id="resource-desc" rows="3" placeholder="A short sentence about what they help with."></textarea>
+
+        <button type="submit" id="resource-submit-btn" class="btn">Add resource</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add / edit home card drawer -->
+  <div id="homecard-drawer" class="drawer hidden">
+    <div class="drawer-overlay" id="homecard-drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-panel-header">
+        <h2 id="homecard-drawer-title">Add card</h2>
+        <button type="button" id="close-homecard-drawer-btn" class="btn-icon" aria-label="Close">&times;</button>
+      </div>
+      <form id="homecard-form">
+        <input type="hidden" id="homecard-id" />
+
+        <label for="homecard-section">Group <span class="required">*</span></label>
+        <select id="homecard-section">
+          <option value="pillars">Mission pillars (green)</option>
+          <option value="gifts">Gift needs (gold)</option>
+          <option value="partners">Partners</option>
+        </select>
+
+        <label for="homecard-title">Title <span class="required">*</span></label>
+        <input type="text" id="homecard-title" placeholder="Advocacy" required />
+
+        <div id="homecard-partner-fields" class="hidden">
+          <label for="homecard-tag">Tag <span style="font-weight: 400; color: var(--brown-faint);">(the small label under the name)</span></label>
+          <input type="text" id="homecard-tag" placeholder="Low cost spay and neuter" />
+        </div>
+
+        <label for="homecard-desc">Description</label>
+        <textarea id="homecard-desc" rows="3" placeholder="A short sentence describing this card."></textarea>
+
+        <div id="homecard-partner-fields-2" class="hidden">
+          <label for="homecard-meta">Contact <span style="font-weight: 400; color: var(--brown-faint);">(phone or email)</span></label>
+          <input type="text" id="homecard-meta" placeholder="(423) 476-7122" />
+
+          <label for="homecard-url">Link <span style="font-weight: 400; color: var(--brown-faint);">(their website; adds a "Visit" button)</span></label>
+          <input type="text" id="homecard-url" placeholder="https://..." />
+        </div>
+
+        <button type="submit" id="homecard-submit-btn" class="btn">Add card</button>
+      </form>
+    </div>
+  </div>
+
   <!-- Confirm dialog (reusable) -->
   <div id="confirm-dialog" class="dialog-overlay hidden">
     <div class="dialog-box">
@@ -208,7 +494,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
-  <script src="../config.js"></script>
+  <script src="../config"></script>
   <script src="admin.js"></script>
 </body>
 </html>

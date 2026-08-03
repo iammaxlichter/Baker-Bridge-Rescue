@@ -45,6 +45,25 @@
     return res.data || [];
   }
 
+  /* The home-page preview shows the products marked "featured" in /admin, in
+     their featured_order. If nothing is featured yet (or the featured columns
+     don't exist yet), fall back to the first few active products by shop order
+     so the preview is never empty. */
+  async function fetchFeatured(fallbackLimit) {
+    var c = getClient();
+    if (!c) throw new Error("Store is not configured. Add config.js with your Supabase values.");
+    var res = await c
+      .from("products")
+      .select("*")
+      .eq("active", true)
+      .eq("featured", true)
+      .order("featured_order", { ascending: true, nullsFirst: false })
+      .order("sort_order", { ascending: true });
+    if (res.error) return fetchProducts(fallbackLimit); // featured columns not migrated yet
+    if (res.data && res.data.length) return res.data;
+    return fetchProducts(fallbackLimit);
+  }
+
   function cardHTML(p) {
     var altImg = (p.image_urls || []).filter(Boolean)[0];
     var media;
@@ -75,14 +94,17 @@
     return '<div class="store-state ' + kind + '"><p>' + esc(msg) + "</p></div>";
   }
 
-  /* Mounts the product grid into a container. opts: { limit, emptyMsg } */
+  /* Mounts the product grid into a container.
+     opts: { limit, emptyMsg, featured }. With featured:true the container is
+     filled from the curated home-page preview (see fetchFeatured); limit then
+     acts as the fallback count when nothing is featured. */
   async function mount(selector, opts) {
     opts = opts || {};
     var el = document.querySelector(selector);
     if (!el) return;
     el.innerHTML = stateHTML("loading", "Loading the store");
     try {
-      var products = await fetchProducts(opts.limit);
+      var products = opts.featured ? await fetchFeatured(opts.limit) : await fetchProducts(opts.limit);
       if (!products.length) {
         el.innerHTML = stateHTML("empty", opts.emptyMsg || "New products are on the way. Check back soon.");
         return;
@@ -95,5 +117,5 @@
     }
   }
 
-  window.BBRShop = { fetchProducts: fetchProducts, mount: mount };
+  window.BBRShop = { fetchProducts: fetchProducts, fetchFeatured: fetchFeatured, mount: mount };
 })();

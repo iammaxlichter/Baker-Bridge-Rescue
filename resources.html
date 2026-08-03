@@ -16,7 +16,7 @@
 
   <header class="site-header solid">
     <div class="wrap">
-      <a class="brand" href="index.html">Baker Bridge Rescue</a>
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/brand/logo.png" alt="Baker Bridge Rescue" /></a>
       <button class="nav-toggle" aria-expanded="false" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -34,17 +34,40 @@
 
   <main id="main">
 
-    <section class="page-hero">
-      <div class="wrap">
-        <span class="eyebrow">A resource for animal welfare</span>
-        <h1>Resources for animal welfare</h1>
-        <p class="lede">Grants, emergency vet assistance, food programs, and support for families, rescuers, and shelters. We keep this list so no one has to search alone. We are adding links as we verify them, so check back often.</p>
+    <section class="page-hero res-hero">
+      <div class="wrap res-hero-inner">
+        <div class="res-hero-text">
+          <span class="eyebrow">Help, grants &amp; funding</span>
+          <h1>Resources for animal welfare</h1>
+          <p class="lede">Grants, emergency vet assistance, food programs, and support for families, rescuers, and shelters. We keep this list so no one has to search alone. We are adding links as we verify them, so check back often.</p>
+        </div>
+        <div class="res-hero-art" aria-hidden="true">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <g id="res-paw">
+                <ellipse cx="12" cy="16.2" rx="4.4" ry="3.9" />
+                <ellipse cx="4.9" cy="10.6" rx="1.9" ry="2.5" transform="rotate(-22 4.9 10.6)" />
+                <ellipse cx="9.3" cy="6.9" rx="2" ry="2.7" transform="rotate(-8 9.3 6.9)" />
+                <ellipse cx="14.7" cy="6.9" rx="2" ry="2.7" transform="rotate(8 14.7 6.9)" />
+                <ellipse cx="19.1" cy="10.6" rx="1.9" ry="2.5" transform="rotate(22 19.1 10.6)" />
+              </g>
+            </defs>
+            <use href="#res-paw" transform="translate(4 78) rotate(-16) scale(1.7)" fill="#BE5A3B" />
+            <use href="#res-paw" transform="translate(70 44) rotate(-2) scale(2)" fill="#127A80" />
+            <use href="#res-paw" transform="translate(138 74) rotate(10) scale(1.7)" fill="#EEB462" />
+            <use href="#res-paw" transform="translate(196 34) rotate(4) scale(2.1)" fill="#3F7D4E" />
+            <use href="#res-paw" transform="translate(212 100) rotate(20) scale(1.35)" fill="#CD7672" />
+          </svg>
+        </div>
       </div>
     </section>
 
     <section class="section tight">
       <div class="wrap">
 
+        <!-- Filled from the resources table (managed in /admin). These groups
+             stay as a fallback if the table is empty or unreachable. -->
+        <div id="resource-groups">
         <details class="res-group reveal" open>
           <summary>Emergency and medical help for pet families <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
           <div class="res-items">
@@ -94,6 +117,7 @@
             <div class="res-item"><strong>Neighborhood pet support groups</strong><br /><span>Local volunteer networks for temporary fostering, transport, and supplies.</span></div>
           </div>
         </details>
+        </div>
 
         <div class="card reveal mt-40" style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between;">
           <div>
@@ -111,8 +135,8 @@
   <footer class="site-footer">
     <div class="wrap top">
       <div>
-        <div class="footer-brand">Baker Bridge Rescue</div>
-        <p class="footer-mission">Advocating for humane laws, educating owners, and providing lifelong sanctuary care for the animals still in our keeping. Cleveland, Tennessee. Since 1996.</p>
+        <img class="footer-logo" src="assets/brand/logo.png" alt="Baker Bridge Rescue" />
+        <p class="footer-mission">Advocating for humane laws, educating owners, and providing lifelong sanctuary care for the animals still in our keeping. West Kentucky. Since 1996.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -131,7 +155,7 @@
           <li><a href="mailto:bakerbridgerescue@aol.com">bakerbridgerescue@aol.com</a></li>
           <li><a href="https://www.facebook.com/BakerBridgeRescue/" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EB9VP54KJB4Y6" target="_blank" rel="noopener">Donate with PayPal</a></li>
-          <li>Cleveland, Tennessee</li>
+          <li>West Kentucky</li>
         </ul>
       </div>
     </div>
@@ -141,6 +165,9 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="config"></script>
+  <script src="js/resources.js"></script>
   <script src="js/site.js"></script>
 </body>
 </html>

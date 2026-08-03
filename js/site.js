@@ -76,9 +76,11 @@
     el.textContent = target.toLocaleString() + suffix;
   });
 
-  /* Lightbox (gallery) */
-  var lbFigures = Array.prototype.slice.call(document.querySelectorAll("[data-lightbox] figure"));
-  if (lbFigures.length) {
+  /* Lightbox (gallery). Figures are bound by delegation rather than one
+     listener each, because the gallery grids are filled in from Supabase
+     after this script runs. The figure list is recomputed on every open, so
+     prev/next always walk the grid as it stands right now. */
+  if (document.querySelector("[data-lightbox]")) {
     var lb = document.createElement("div");
     lb.className = "lightbox";
     lb.innerHTML =
@@ -88,11 +90,14 @@
       "<img alt=\"\">";
     document.body.appendChild(lb);
     var lbImg = lb.querySelector("img");
+    var lbFigures = [];
     var idx = 0;
 
     function show(i) {
+      if (!lbFigures.length) return;
       idx = (i + lbFigures.length) % lbFigures.length;
       var img = lbFigures[idx].querySelector("img");
+      if (!img) return;
       lbImg.src = img.src;
       lbImg.alt = img.alt || "";
       lb.classList.add("open");
@@ -102,8 +107,12 @@
       lb.classList.remove("open");
       document.body.style.overflow = "";
     }
-    lbFigures.forEach(function (fig, i) {
-      fig.addEventListener("click", function () { show(i); });
+    document.addEventListener("click", function (e) {
+      var fig = e.target.closest ? e.target.closest("[data-lightbox] figure") : null;
+      if (!fig || !fig.querySelector("img")) return;
+      var grid = fig.closest("[data-lightbox]");
+      lbFigures = Array.prototype.slice.call(grid.querySelectorAll("figure"));
+      show(lbFigures.indexOf(fig));
     });
     lb.querySelector(".lb-close").addEventListener("click", close);
     lb.querySelector(".lb-prev").addEventListener("click", function (e) { e.stopPropagation(); show(idx - 1); });
