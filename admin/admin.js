@@ -224,6 +224,19 @@ async function startEnrollment() {
     factorType: "totp",
     friendlyName: generateFactorName(),
   });
+
+  /* TEMP DEBUG — diagnosing the 2FA QR / manual-code issue. Remove after. */
+  console.log("[MFA enroll] error:", error);
+  console.log("[MFA enroll] data:", data);
+  if (data && data.totp) {
+    console.log("[MFA enroll] qr_code:", data.totp.qr_code);
+    console.log("[MFA enroll] secret:", data.totp.secret);
+    console.log("[MFA enroll] uri:", data.totp.uri);
+    console.log("[MFA enroll] qr_code is a data: URI?", String(data.totp.qr_code).startsWith("data:"));
+    console.log("[MFA enroll] qr_code is raw <svg>?", String(data.totp.qr_code).trim().startsWith("<svg"));
+  }
+  /* END TEMP DEBUG */
+
   if (error) {
     showError(error.message);
     showSection("login");
