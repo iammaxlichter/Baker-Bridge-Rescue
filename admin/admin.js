@@ -218,6 +218,30 @@ function generateFactorName() {
   return `factor-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
+// Supabase returns totp.qr_code as an SVG data URI, e.g.
+//   data:image/svg+xml;utf-8,<svg ...>...</svg>   (or ;base64,...)
+// The raw SVG contains quotes, so it can't be dropped into an <img src="">
+// attribute — decode the SVG markup out of the data URI and inject that.
+// Split on the FIRST comma only, since the SVG payload itself contains commas.
+function renderQrCode(elementId, qrCode) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const comma = qrCode.indexOf(",");
+  const meta = comma >= 0 ? qrCode.slice(0, comma) : "";
+  const payload = comma >= 0 ? qrCode.slice(comma + 1) : qrCode;
+  let svg;
+  if (/;base64/i.test(meta)) {
+    svg = atob(payload);
+  } else {
+    try {
+      svg = decodeURIComponent(payload);
+    } catch (e) {
+      svg = payload; // already raw, not percent-encoded
+    }
+  }
+  el.innerHTML = svg;
+}
+
 async function startEnrollment() {
   showError(null);
   const { data, error } = await supabaseClient.auth.mfa.enroll({
@@ -232,7 +256,7 @@ async function startEnrollment() {
   }
 
   pendingEnrollFactorId = data.id;
-  document.getElementById("mfa-qr").innerHTML = `<img src="${data.totp.qr_code}" style="width:200px;height:200px;" />`;
+  renderQrCode("mfa-qr", data.totp.qr_code);
   document.getElementById("mfa-secret-text").textContent = data.totp.secret;
   showSection("mfaEnroll");
 }
@@ -1506,7 +1530,7 @@ async function openMfaDrawer() {
   }
 
   pendingBackupFactorId = data.id;
-  document.getElementById("mfa-add-qr").innerHTML = `<img src="${data.totp.qr_code}" style="width:200px;height:200px;" />`;
+  renderQrCode("mfa-add-qr", data.totp.qr_code);
   document.getElementById("mfa-add-secret-text").textContent = data.totp.secret;
   mfaAddDrawer.classList.remove("hidden");
 }
