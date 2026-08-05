@@ -244,7 +244,7 @@ async function startEnrollment() {
   }
 
   pendingEnrollFactorId = data.id;
-  document.getElementById("mfa-qr").innerHTML = data.totp.qr_code;
+  document.getElementById("mfa-qr").innerHTML = `<img src="${data.totp.qr_code}" style="width:200px;height:200px;" />`;
   document.getElementById("mfa-secret-text").textContent = data.totp.secret;
   showSection("mfaEnroll");
 }
@@ -1518,7 +1518,7 @@ async function openMfaDrawer() {
   }
 
   pendingBackupFactorId = data.id;
-  document.getElementById("mfa-add-qr").innerHTML = data.totp.qr_code;
+  document.getElementById("mfa-add-qr").innerHTML = `<img src="${data.totp.qr_code}" style="width:200px;height:200px;" />`;
   document.getElementById("mfa-add-secret-text").textContent = data.totp.secret;
   mfaAddDrawer.classList.remove("hidden");
 }
