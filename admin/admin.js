@@ -218,28 +218,15 @@ function generateFactorName() {
   return `factor-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
-// Supabase returns totp.qr_code as an SVG data URI, e.g.
-//   data:image/svg+xml;utf-8,<svg ...>...</svg>   (or ;base64,...)
-// The raw SVG contains quotes, so it can't be dropped into an <img src="">
-// attribute — decode the SVG markup out of the data URI and inject that.
-// Split on the FIRST comma only, since the SVG payload itself contains commas.
-function renderQrCode(elementId, qrCode) {
+// Render a scannable QR from the authenticator's otpauth:// URI (data.totp.uri)
+// with qrcode.js. A generated canvas/PNG QR scans far more reliably on phone
+// cameras than the server's inline SVG did.
+function renderQrCode(elementId, uri) {
   const el = document.getElementById(elementId);
   if (!el) return;
-  const comma = qrCode.indexOf(",");
-  const meta = comma >= 0 ? qrCode.slice(0, comma) : "";
-  const payload = comma >= 0 ? qrCode.slice(comma + 1) : qrCode;
-  let svg;
-  if (/;base64/i.test(meta)) {
-    svg = atob(payload);
-  } else {
-    try {
-      svg = decodeURIComponent(payload);
-    } catch (e) {
-      svg = payload; // already raw, not percent-encoded
-    }
-  }
-  el.innerHTML = svg;
+  el.innerHTML = ""; // clear any previous QR before drawing a new one
+  if (typeof QRCode === "undefined") return; // library failed to load; the manual secret still works
+  new QRCode(el, { text: uri, width: 200, height: 200 });
 }
 
 async function startEnrollment() {
@@ -256,7 +243,7 @@ async function startEnrollment() {
   }
 
   pendingEnrollFactorId = data.id;
-  renderQrCode("mfa-qr", data.totp.qr_code);
+  renderQrCode("mfa-qr", data.totp.uri);
   document.getElementById("mfa-secret-text").textContent = data.totp.secret;
   showSection("mfaEnroll");
 }
@@ -1530,7 +1517,7 @@ async function openMfaDrawer() {
   }
 
   pendingBackupFactorId = data.id;
-  renderQrCode("mfa-add-qr", data.totp.qr_code);
+  renderQrCode("mfa-add-qr", data.totp.uri);
   document.getElementById("mfa-add-secret-text").textContent = data.totp.secret;
   mfaAddDrawer.classList.remove("hidden");
 }
